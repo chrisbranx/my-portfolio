@@ -11,16 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
   let synthInterval = null;
   let audioCtx = null;
 
-  // Simulated GitHub contribution data (140 days / 20 weeks)
-  const contributionData = Array.from({ length: 140 }, () => {
-    const rand = Math.random();
-    if (rand < 0.3) return 0;
-    if (rand < 0.55) return 1;
-    if (rand < 0.75) return 2;
-    if (rand < 0.9) return 3;
-    return 4;
-  });
-
   // --- Element Selectors ---
   const loader = document.getElementById("loading-screen");
   const loaderBar = document.getElementById("loader-progress");
@@ -636,10 +626,10 @@ document.addEventListener("DOMContentLoaded", () => {
       timelineContainer.appendChild(timelineItem);
     });
 
-    // 6. Testimonials Render — Book Carousel
+    // 6. Testimonials Render — Carousel (right-to-left slide)
     const allTestimonials = [...(data.testimonials || []), ...getApprovedReviews()];
     window._testimonialsData = allTestimonials;
-    renderTestimonialPage(0);
+    renderTestimonialCarousel();
 
     // Run custom cursor bindings and reveal observers
     updateHoverTargets();
@@ -982,7 +972,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const container = document.getElementById("snippets-container");
     if (!container) return;
 
-    container.innerHTML = codeSnippets.map(snippet => `
+    container.innerHTML = (window.codeSnippets || []).map(snippet => `
       <div class="snippet-card hover-target">
         <div class="snippet-header">
           <div class="snippet-dots">
@@ -1005,7 +995,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const grid = document.getElementById("activity-grid");
     if (!grid) return;
 
-    grid.innerHTML = contributionData.map((level, i) => {
+    const data = window.contributionData || [];
+    if (!data.length) return;
+    grid.innerHTML = data.map((level, i) => {
       const date = new Date();
       date.setDate(date.getDate() - (139 - i));
       const dateStr = date.toLocaleDateString(currentLang === "en" ? "en-US" : "fr-FR", {
@@ -1014,7 +1006,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return `<div class="activity-cell" data-level="${level}" data-count="${level}" title="${dateStr}: ${level} contributions"></div>`;
     }).join("");
 
-    const total = contributionData.reduce((a, b) => a + b, 0);
+    const total = (window.contributionData || []).reduce((a, b) => a + b, 0);
     const label = document.getElementById("activity-label");
     if (label) {
       label.textContent = currentLang === "en"
@@ -1309,30 +1301,28 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- Testimonial Book Carousel ---
+  // --- Testimonial Carousel (right-to-left slide) ---
   let testIndex = 0;
   let testTimer = null;
 
-  function renderTestimonialPage(index) {
+  function renderTestimonialCarousel() {
     const arr = window._testimonialsData || [];
-    if (!arr.length) return;
-    if (index < 0) index = arr.length - 1;
-    if (index >= arr.length) index = 0;
-    testIndex = index;
-
-    const inner = document.getElementById("book-inner");
+    const track = document.getElementById("book-track");
     const dots = document.getElementById("book-dots");
-    if (!inner) return;
+    if (!arr.length || !track) return;
 
-    const t = arr[testIndex];
-    inner.innerHTML = `
-      <div class="book-quote">&ldquo;</div>
-      <p class="book-text">${escapeHtml(t.text)}</p>
-      <div class="book-author">
-        <h4>${escapeHtml(t.author)}</h4>
-        <p>${escapeHtml(t.role)}</p>
+    track.innerHTML = arr.map(t => `
+      <div class="book-slide">
+        <div class="book-quote">&ldquo;</div>
+        <p class="book-text">${escapeHtml(t.text)}</p>
+        <div class="book-author">
+          <h4>${escapeHtml(t.author)}</h4>
+          <p>${escapeHtml(t.role)}</p>
+        </div>
       </div>
-    `;
+    `).join("");
+
+    goToSlide(testIndex);
 
     if (dots) {
       dots.innerHTML = arr.map((_, i) =>
@@ -1341,9 +1331,29 @@ document.addEventListener("DOMContentLoaded", () => {
       dots.querySelectorAll(".book-dot").forEach(d => {
         d.addEventListener("click", () => {
           clearInterval(testTimer);
-          renderTestimonialPage(parseInt(d.dataset.idx));
+          goToSlide(parseInt(d.dataset.idx));
           startTestTimer();
         });
+      });
+    }
+  }
+
+  function goToSlide(index) {
+    const arr = window._testimonialsData || [];
+    if (!arr.length) return;
+    if (index < 0) index = arr.length - 1;
+    if (index >= arr.length) index = 0;
+    testIndex = index;
+
+    const track = document.getElementById("book-track");
+    if (track) {
+      track.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    const dots = document.getElementById("book-dots");
+    if (dots) {
+      dots.querySelectorAll(".book-dot").forEach((d, i) => {
+        d.classList.toggle("active", i === index);
       });
     }
   }
@@ -1351,23 +1361,23 @@ document.addEventListener("DOMContentLoaded", () => {
   function startTestTimer() {
     clearInterval(testTimer);
     testTimer = setInterval(() => {
-      renderTestimonialPage(testIndex + 1);
+      goToSlide(testIndex + 1);
     }, 5000);
   }
 
   document.getElementById("book-prev")?.addEventListener("click", () => {
     clearInterval(testTimer);
-    renderTestimonialPage(testIndex - 1);
+    goToSlide(testIndex - 1);
     startTestTimer();
   });
 
   document.getElementById("book-next")?.addEventListener("click", () => {
     clearInterval(testTimer);
-    renderTestimonialPage(testIndex + 1);
+    goToSlide(testIndex + 1);
     startTestTimer();
   });
 
-  // Touch/swipe support for mobile
+  // Touch/swipe support
   let touchX = 0;
   const bookEl = document.getElementById("book-content");
   if (bookEl) {
@@ -1378,7 +1388,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const diff = touchX - e.changedTouches[0].screenX;
       if (Math.abs(diff) > 40) {
         clearInterval(testTimer);
-        renderTestimonialPage(diff > 0 ? testIndex + 1 : testIndex - 1);
+        goToSlide(diff > 0 ? testIndex + 1 : testIndex - 1);
         startTestTimer();
       }
     }, { passive: true });

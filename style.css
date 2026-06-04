@@ -1008,24 +1008,33 @@ header {
 
 .book-content {
   flex: 1;
-  padding: 40px 36px 28px;
   min-height: 240px;
   position: relative;
   overflow: hidden;
+  padding: 0;
 }
 
-.book-inner {
+.book-track-wrap {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.book-track {
+  display: flex;
+  transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+
+.book-slide {
+  min-width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   gap: 16px;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.book-inner.fade-out {
-  opacity: 0;
-  transform: translateY(8px);
+  padding: 40px 36px 28px;
+  box-sizing: border-box;
 }
 
 .book-quote {

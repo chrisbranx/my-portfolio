@@ -624,3 +624,7 @@ const contributionData = Array.from({ length: 140 }, () =>
   Math.floor(Math.random() * 5)
 );
 
+// Expose globals for cross-script access
+window.codeSnippets = codeSnippets;
+window.contributionData = contributionData;
+
