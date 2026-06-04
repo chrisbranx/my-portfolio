@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 | Segmentation Fault</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background-color: #050608;
+      color: #ff3333; /* Crimson error vibe */
+      font-family: var(--font-mono);
+      cursor: auto;
+    }
+    .err-content {
+      max-width: 600px;
+      padding: 40px;
+      border: 1px dashed #ff3333;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(255, 51, 51, 0.15);
+      background: rgba(19, 21, 28, 0.9);
+      margin: 10vh auto;
+      backdrop-filter: blur(10px);
+    }
+    .err-header {
+      border-bottom: 1px solid #ff3333;
+      padding-bottom: 15px;
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .err-log {
+      white-space: pre-wrap;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 30px;
+      color: var(--text-secondary);
+    }
+    .btn-back {
+      background: transparent;
+      border: 1px solid #ff3333;
+      color: #ff3333;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      display: inline-block;
+    }
+    .btn-back:hover {
+      background: #ff3333;
+      color: #050608;
+      box-shadow: 0 0 15px rgba(255, 51, 51, 0.4);
+    }
+  </style>
+</head>
+<body class="terminal-crt">
+  <!-- Grain texture overlay -->
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <div class="err-content">
+    <div class="err-header">
+      [!] SYSTEM ERROR: 404_PAGE_NOT_FOUND
+    </div>
+    
+    <div class="err-log">
+*** SEGMENTATION FAULT ***
+Address space collision detected at register 0x00404FFF.
+Failed to locate requesting route in local hosting directories.
+
+Possible causes:
+- The path has been moved to another cluster node.
+- Typing error in the navigation bar request.
+- The link has expired or reached end-of-life status.
+
+Stack trace:
+  at Router.resolveRoute (router.js:42:12)
+  at Server.handleRequest (server.js:105:9)
+  at Process.run (runtime.js:18:4)
+    </div>
+
+    <a href="index.html" class="btn-back">
+      &lt;= return_to_home()
+    </a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+=========================================
+BRANDON LEE - SOFTWARE ENGINEER & DEVOPS
+=========================================
+Email: brandon.lee@example.com
+GitHub: github.com/brandonlee-dev
+LinkedIn: linkedin.com/in/brandonlee-dev
+Phone: +1 (514) 555-0199
+Location: Montreal, QC, Canada
+Availability: Open to Opportunities
+
+SUMMARY:
+Versatile Software Engineer and Systems Administrator with a passion for designing secure IT infrastructures, creating responsive web applications, and experimenting with AI integration. Combining academic depth with practical engineering, I build solutions that bridge software development and systems operations.
+
+EDUCATION:
+Bachelor of Computer Science
+Concordia University | Sept 2021 - May 2025
+Specialization in Software Systems and Cyber Security.
+Coursework: Operating Systems, Computer Networks, Software Architecture, Database Design.
+
+EXPERIENCE:
+Junior Systems & DevOps Engineer
+Nexus Cloud Solutions | Sept 2024 - Present
+* Configured and maintained Dockerized deployment environments on AWS EC2, reducing container startup latency by 20%.
+* Automated server backups and security monitoring using custom Bash and Python scripts, cutting down recovery time by 30%.
+* Collaborated on designing robust CI/CD pipelines using GitHub Actions to deploy containerized web services.
+
+Software Developer Intern
+Synthetix AI Lab | May 2023 - Apr 2024
+* Developed conversational modules using NLP libraries, boosting automated chat accuracy by 15%.
+* Engineered a responsive dashboard in React to monitor API response latency and usage metrics.
+* Implemented clean and modular RESTful APIs using Node.js and Express to feed frontend components.
+
+IT Support Technician
+Apex Tech Services | June 2022 - Apr 2023
+* Administered Active Directory directory objects and group policies for over 150 employees.
+* Troubleshoot local area network, Wi-Fi connectivity, and Cisco switches config issues.
+* Provided remote support for Windows/Linux desktop systems, maintaining a 94% user satisfaction rate.
+
+TECHNICAL SKILLS:
+* Languages: JavaScript, TypeScript, Python, Java, SQL, Bash
+* Frameworks: React, Next.js, Node.js, Express, Flask, FastAPI
+* Infrastructure: Docker, AWS (S3, EC2, RDS), Linux Administration, Cisco iOS
+* Soft Skills: Problem Solving, Team Collaboration, Technical Writing, Bilingual (EN/FR)
+
+CERTIFICATIONS:
+* AWS Certified Cloud Practitioner (2024)
+* CompTIA Network+ (2023)
+* Cisco Certified Support Technician (CCST) (2023)
+
+PROJECTS:
+* CloudGuard Monitor: Host monitoring dashboard using Flask, Python, and Docker.
+* SudoChat CLI: WebSocket terminal command messenger with retro layout.
+* Virtual Agent Portfolio: Interactive AI-powered single-page application.
+=========================================
