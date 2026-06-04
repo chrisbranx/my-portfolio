@@ -622,24 +622,10 @@ document.addEventListener("DOMContentLoaded", () => {
       timelineContainer.appendChild(timelineItem);
     });
 
-    // 6. Testimonials Render
-    const testimonialsContainer = document.getElementById("testimonials-container");
-    testimonialsContainer.innerHTML = "";
-    const approvedReviews = getApprovedReviews();
-    const allTestimonials = [...data.testimonials, ...approvedReviews];
-    allTestimonials.forEach(test => {
-      const card = document.createElement("div");
-      card.className = "glass-card testimonial-card hover-target";
-      card.innerHTML = `
-        <span class="quote-icon" aria-hidden="true">&ldquo;</span>
-        <p class="testimonial-text">${test.text}</p>
-        <div class="testimonial-author">
-          <h4>${test.author}</h4>
-          <p>${test.role}</p>
-        </div>
-      `;
-      testimonialsContainer.appendChild(card);
-    });
+    // 6. Testimonials Render — Book Carousel
+    const allTestimonials = [...data.testimonials, ...getApprovedReviews()];
+    window._testimonialsData = allTestimonials;
+    renderTestimonialPage(0);
 
     // Run custom cursor bindings and reveal observers
     updateHoverTargets();
@@ -1305,6 +1291,107 @@ document.addEventListener("DOMContentLoaded", () => {
       setTimeout(() => {
         document.getElementById("review-success-alert").classList.remove("show");
       }, 3000);
+    });
+  }
+
+  // --- Testimonial Book Carousel ---
+  let testIndex = 0;
+  let testTimer = null;
+
+  function renderTestimonialPage(index) {
+    const arr = window._testimonialsData || [];
+    if (!arr.length) return;
+    if (index < 0) index = arr.length - 1;
+    if (index >= arr.length) index = 0;
+    testIndex = index;
+
+    const inner = document.getElementById("book-inner");
+    const dots = document.getElementById("book-dots");
+    if (!inner) return;
+
+    const t = arr[testIndex];
+    inner.innerHTML = `
+      <div class="book-quote">&ldquo;</div>
+      <p class="book-text">${escapeHtml(t.text)}</p>
+      <div class="book-author">
+        <h4>${escapeHtml(t.author)}</h4>
+        <p>${escapeHtml(t.role)}</p>
+      </div>
+    `;
+
+    if (dots) {
+      dots.innerHTML = arr.map((_, i) =>
+        `<button class="book-dot${i === testIndex ? ' active' : ''}" data-idx="${i}"></button>`
+      ).join("");
+      dots.querySelectorAll(".book-dot").forEach(d => {
+        d.addEventListener("click", () => {
+          clearInterval(testTimer);
+          renderTestimonialPage(parseInt(d.dataset.idx));
+          startTestTimer();
+        });
+      });
+    }
+  }
+
+  function startTestTimer() {
+    clearInterval(testTimer);
+    testTimer = setInterval(() => {
+      renderTestimonialPage(testIndex + 1);
+    }, 5000);
+  }
+
+  document.getElementById("book-prev")?.addEventListener("click", () => {
+    clearInterval(testTimer);
+    renderTestimonialPage(testIndex - 1);
+    startTestTimer();
+  });
+
+  document.getElementById("book-next")?.addEventListener("click", () => {
+    clearInterval(testTimer);
+    renderTestimonialPage(testIndex + 1);
+    startTestTimer();
+  });
+
+  // Touch/swipe support for mobile
+  let touchX = 0;
+  const bookEl = document.getElementById("book-content");
+  if (bookEl) {
+    bookEl.addEventListener("touchstart", (e) => {
+      touchX = e.changedTouches[0].screenX;
+    }, { passive: true });
+    bookEl.addEventListener("touchend", (e) => {
+      const diff = touchX - e.changedTouches[0].screenX;
+      if (Math.abs(diff) > 40) {
+        clearInterval(testTimer);
+        renderTestimonialPage(diff > 0 ? testIndex + 1 : testIndex - 1);
+        startTestTimer();
+      }
+    }, { passive: true });
+  }
+
+  startTestTimer();
+
+  // --- Admin Password Access ---
+  const footerAdminBtn = document.getElementById("footer-admin-btn");
+  if (footerAdminBtn) {
+    footerAdminBtn.addEventListener("click", () => {
+      const pwd = prompt("Enter admin password:");
+      if (pwd === "brandon_admin") {
+        localStorage.setItem("portfolio-admin-unlocked", "true");
+        const adminSection = document.getElementById("admin");
+        if (adminSection) {
+          adminSection.style.display = "block";
+          adminSection.classList.add("active");
+        }
+        const adminNavLink = document.getElementById("nav-admin-text");
+        if (adminNavLink) adminNavLink.style.display = "block";
+        if (window.renderPendingReviews) window.renderPendingReviews();
+        alert("Admin access granted!");
+        location.hash = "admin";
+        location.href = "#admin";
+      } else if (pwd !== null) {
+        alert("Incorrect password.");
+      }
     });
   }
 

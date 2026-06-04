@@ -12,7 +12,7 @@ const portfolioData = {
     phone: "+237 688 104 091",
     github: "github.com/chrisbranx",
     linkedin: "linkedin.com/in/brandon-funi",
-    about: "I'm Chris Brandon, an aspiring Software Engineer currently studying at Saint Austin International Bilingual University of Science and Technology (SAIBUIST). With a strong passion for innovation and technology, I specialize in mobile app development, web development, and building digital solutions that address real-world challenges.\n\nBeyond academics, I serve as the Communication Delegate for the entire university, a role I've held since November 2024. I also contribute to my community as the Media Head at my church, managing live broadcast productions across platforms like Facebook and YouTube.",
+    about: "I'm Brandon Funi, an aspiring Software Engineer currently studying at Saint Austin International Bilingual University of Science and Technology (SAIBUIST). With a strong passion for innovation and technology, I specialize in mobile app development, web development, and building digital solutions that address real-world challenges.\n\nBeyond my studies, I serve as the Communication Delegate for the entire university since November 2024. I also contribute to my community as a Media Head for my local church, managing live broadcasts on platforms like Facebook and YouTube.",
     experience: [
       {
         role: "Intern & Group Leader — Full-Stack Developer",
@@ -22,152 +22,44 @@ const portfolioData = {
         endDate: "2025-03-08",
         logo: "minpostel",
         achievements: [
-          "Served as Group Leader and Head of the entire school team during first internship in Year 1.",
-          "Led the development of the MINPOSTEL Staff Management System to digitize and manage staff records.",
-          "Sharpened leadership, project management, and full-stack development skills under real-world conditions."
+          "Group leader and head of entire school team during first Year 1 internship.",
+          "Led the development of MINPOSTEL's staff management system.",
+          "Built leadership, project management, and full-stack development skills."
         ]
       },
       {
         role: "Communication Delegate",
-        company: "Saint Austin International Bilingual University of Science and Technology (SAIBUIST)",
-        period: "2024-11-01 to Present",
+        company: "SAIBUIST Student Union Government",
+        period: "Nov 2024 – Present",
         startDate: "2024-11-01",
-        endDate: "Present",
-        logo: "saibuist",
+        endDate: null,
+        logo: "sug",
         achievements: [
-          "Serve as the primary liaison between students and university administration.",
-          "Facilitate clear and effective communication of university policies and announcements.",
-          "Organize and manage communication channels for the entire university student body."
+          "Serving as the official mouthpiece between the student body and administration.",
+          "Managing all official communications, announcements, and public relations.",
+          "Collaborating with the President on Canva designs for university campaigns."
         ]
       },
       {
         role: "Media Head",
-        company: "Local Church",
+        company: "Local Church — Facebook & YouTube Broadcasts",
         period: "Present",
-        startDate: "2023-01-01",
-        endDate: "Present",
+        startDate: "2024-01-01",
+        endDate: null,
         logo: "church",
         achievements: [
-          "Manage live broadcast productions across platforms like Facebook and YouTube.",
-          "Oversee audio and video mixing using OBS Studio and VMix.",
-          "Coordinate the media team to ensure smooth operation during services and events."
+          "Managing all technical aspects of live streaming for weekly services.",
+          "Growing online congregation through digital outreach and social media engagement.",
+          "Producing multimedia content for community events and special programs."
         ]
       }
     ],
-    education: [
-      {
-        degree: "Software Engineering Student",
-        institution: "Saint Austin International Bilingual University of Science and Technology (SAIBUIST)",
-        period: "Present",
-        achievements: [
-          "Focus on creating user-friendly, impactful solutions.",
-          "Exploring mobile & web development."
-        ]
-      }
-    ],
-    skills: {
-      languages: [
-        { name: "JavaScript", level: "Advanced", percent: 85 },
-        { name: "Python", level: "Intermediate", percent: 75 },
-        { name: "PHP", level: "Intermediate", percent: 70 },
-        { name: "C", level: "Intermediate", percent: 65 },
-        { name: "HTML5 / CSS3", level: "Advanced", percent: 90 }
-      ],
-      frameworks: [
-        { name: "React Native", level: "Advanced", percent: 85 },
-        { name: "Flutter", level: "Intermediate", percent: 75 },
-        { name: "Node.js / Express.js", level: "Advanced", percent: 80 },
-        { name: "Bootstrap", level: "Advanced", percent: 85 }
-      ],
-      infrastructure: [
-        { name: "Supabase / PostgreSQL", level: "Advanced", percent: 80 },
-        { name: "MongoDB", level: "Intermediate", percent: 75 },
-        { name: "MySQL", level: "Advanced", percent: 85 },
-        { name: "REST APIs", level: "Advanced", percent: 85 },
-        { name: "Git / Docker", level: "Intermediate", percent: 70 }
-      ],
-      soft: [
-        { name: "Agile Development", level: "Advanced", percent: 85 },
-        { name: "API-first Design", level: "Advanced", percent: 80 },
-        { name: "Microservices", level: "Intermediate", percent: 70 },
-        { name: "Mobile-first", level: "Advanced", percent: 90 }
-      ]
-    },
     certifications: [
-    ],
-    projects: [
-      {
-        id: "linkup",
-        title: "LinkUp",
-        category: "mobile",
-        badge: "Featured",
-        desc: "A chat & social platform integrating mobile money for P2P transactions. Designed for youths and entrepreneurs to connect and transact seamlessly.",
-        features: ["Integrated chat system", "P2P mobile money transactions", "Targeted at youths and entrepreneurs"],
-        stack: ["React Native", "Node.js", "Mobile Money API"],
-        github: "github.com/chrisbranx",
-        demo: "#",
-        stats: { stars: 10, forks: 2, commits: 45 }
-      },
-      {
-        id: "qyra",
-        title: "Qyra",
-        category: "mobile",
-        badge: "Featured",
-        desc: "Futuristic social media app combining the best features of Instagram, Twitter, and Telegram into one unified platform.",
-        features: ["Unified social feed", "Real-time messaging", "Advanced media sharing"],
-        stack: ["Flutter", "Dart", "Supabase", "Real-time"],
-        github: "github.com/chrisbranx",
-        demo: "#",
-        stats: { stars: 15, forks: 3, commits: 60 }
-      },
-      {
-        id: "libuconnect",
-        title: "LIBU Connect Application",
-        category: "web",
-        badge: "New",
-        desc: "A comprehensive student portal built for schools, offering features such as course registration, grade tracking, timetable management, fee payment status, library access, assignment submissions, announcements, and seamless teacher-student communication.",
-        features: ["Course & grade tracking", "Library access & assignment submissions", "Teacher-student communication"],
-        stack: ["React Native", "Express.js", "PostgreSQL"],
-        github: "github.com/chrisbranx",
-        demo: "#",
-        stats: { stars: 8, forks: 1, commits: 30 }
-      },
-      {
-        id: "saintaustin",
-        title: "Saint Austin's Verification App",
-        category: "web",
-        badge: "Featured",
-        desc: "QR-based guidance and verification system for St. Austin's International University, enabling efficient verification processes and digital navigation.",
-        features: ["QR code generation and attribution", "Efficient event ticket verification", "Digital navigation"],
-        stack: ["React", "Node.js", "QR Technology"],
-        github: "github.com/chrisbranx",
-        demo: "#",
-        stats: { stars: 12, forks: 2, commits: 50 }
-      },
-      {
-        id: "univhub",
-        title: "University Hub",
-        category: "web",
-        badge: "New",
-        desc: "Academic portal for Year 1 students providing easy access to resources, digital library, and teacher-student interaction features.",
-        features: ["Year 1 resource access", "Digital library integration", "Interaction features"],
-        stack: ["React", "Node.js", "MongoDB"],
-        github: "github.com/chrisbranx",
-        demo: "#",
-        stats: { stars: 5, forks: 0, commits: 20 }
-      },
-      {
-        id: "carko237",
-        title: "Carko237",
-        category: "web",
-        badge: "Featured",
-        desc: "A premier online marketplace for Cameroon fashion, enabling buyers and sellers to connect. Shop and sell trendy fashion items with ease.",
-        features: ["Fashion marketplace", "Buyer/seller connection", "Trend shopping"],
-        stack: ["React", "Node.js", "E-commerce"],
-        github: "github.com/chrisbranx",
-        demo: "#",
-        stats: { stars: 20, forks: 5, commits: 80 }
-      }
+      { name: "Software Engineering (Year 1)", issuer: "SAIBUIST", date: "2025" },
+      { name: "Full-Stack Development Internship", issuer: "MINPOSTEL Cameroon", date: "Mar 2025" },
+      { name: "Communication & Digital Media", issuer: "SAIBUIST Student Union", date: "2025" },
+      { name: "React Native Mobile Development", issuer: "Meta (Coursera)", date: "2025" },
+      { name: "Leadership & Team Management", issuer: "University Leadership Program", date: "2024" }
     ],
     testimonials: [
       {
@@ -450,6 +342,13 @@ const portfolioData = {
         role: "Designer Produit & Chercheuse UX",
         text: "Brandon se soucie des personnes qui utilisent ses produits. Il pose les bonnes questions, écoute les retours et itère jusqu'à ce que l'expérience soit parfaite. Cette mentalité centrée sur l'utilisateur est rare et précieuse."
       }
+    ],
+    certifications: [
+      { name: "Génie Logiciel (Année 1)", issuer: "SAIBUIST", date: "2025" },
+      { name: "Stage Développement Full-Stack", issuer: "MINPOSTEL Cameroun", date: "Mar 2025" },
+      { name: "Communication & Médias Numériques", issuer: "BDE SAIBUIST", date: "2025" },
+      { name: "Développement Mobile React Native", issuer: "Meta (Coursera)", date: "2025" },
+      { name: "Leadership & Gestion d'Équipe", issuer: "Programme Universitaire de Leadership", date: "2024" }
     ]
   }
 };

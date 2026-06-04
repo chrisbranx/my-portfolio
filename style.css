@@ -996,6 +996,127 @@ header {
   margin-top: 30px;
 }
 
+.testimonial-book {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 30px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.book-content {
+  flex: 1;
+  padding: 40px 36px 28px;
+  min-height: 240px;
+  position: relative;
+  overflow: hidden;
+}
+
+.book-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.book-inner.fade-out {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.book-quote {
+  font-size: 2rem;
+  color: rgba(var(--accent-rgb), 0.12);
+  font-family: Georgia, serif;
+  line-height: 0.5;
+}
+
+.book-text {
+  font-size: 1rem;
+  font-style: italic;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.book-author {
+  margin-top: 4px;
+}
+
+.book-author h4 {
+  font-size: 1rem;
+  font-weight: var(--fw-semibold);
+  margin-bottom: 2px;
+}
+
+.book-author p {
+  font-size: 0.82rem;
+  color: var(--accent);
+  font-family: var(--font-mono);
+}
+
+.book-nav {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  background: var(--card-bg);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.book-nav:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(var(--accent-rgb), 0.05);
+}
+
+.book-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.book-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border-color);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.book-dot.active {
+  background: var(--accent);
+  transform: scale(1.3);
+}
+
+.footer-admin-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: color 0.2s;
+  font-family: var(--font-mono);
+}
+
+.footer-admin-btn:hover {
+  color: var(--accent);
+}
+
 .review-form-wrapper {
   margin-top: 60px;
   max-width: 600px;
@@ -2043,8 +2164,19 @@ footer {
     grid-template-columns: 1fr;
   }
 
-  .testimonials-grid {
-    grid-template-columns: 1fr;
+  .testimonial-book {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .book-content {
+    padding: 28px 20px 20px;
+    min-height: 200px;
+  }
+
+  .book-nav {
+    width: 36px;
+    height: 36px;
   }
 
   .review-form .form-row {

@@ -336,8 +336,20 @@
     <!-- Testimonials Section -->
     <section class="section reveal" id="testimonials">
       <h2 class="section-title" id="testimonials-section-heading">Testimonials</h2>
-      <div class="testimonials-grid" id="testimonials-container">
-        <!-- Rendered dynamically by app.js -->
+      
+      <div class="testimonial-book" id="testimonial-book">
+        <button class="book-nav book-prev" id="book-prev" aria-label="Previous testimonial">
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/></svg>
+        </button>
+        <div class="book-content glass-card" id="book-content">
+          <div class="book-inner" id="book-inner">
+            <!-- Rendered dynamically -->
+          </div>
+          <div class="book-dots" id="book-dots"></div>
+        </div>
+        <button class="book-nav book-next" id="book-next" aria-label="Next testimonial">
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>
+        </button>
       </div>
 
       <div class="review-form-wrapper">
@@ -510,7 +522,9 @@
       </ul>
       <p class="footer-signature">Built with <span class="footer-heart">&#9829;</span> by Brandon Funi &mdash; from Cameroon, for the world.</p>
       <p class="footer-text">&copy; 2026 Brandon Funi. All rights reserved.</p>
-
+      <p class="footer-text" style="margin-top:4px;">
+        <button class="footer-admin-btn" id="footer-admin-btn">🔒 Admin Panel</button>
+      </p>
     </div>
   </footer>
 
