@@ -535,6 +535,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const skillsContainer = document.getElementById("skills-container");
     skillsContainer.innerHTML = "";
 
+    if (!data.skills) data.skills = {};
     for (const [groupName, skillList] of Object.entries(data.skills)) {
       const card = document.createElement("div");
       card.className = "glass-card skill-group-card";
@@ -588,7 +589,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 4. Certifications Render
     const certsContainer = document.getElementById("certs-container");
     certsContainer.innerHTML = "";
-    data.certifications.forEach(cert => {
+    (data.certifications || []).forEach(cert => {
       const card = document.createElement("div");
       card.className = "glass-card cert-card";
       card.innerHTML = `
@@ -608,7 +609,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 5. Timeline / Experience Render
     const timelineContainer = document.getElementById("timeline-container");
     timelineContainer.innerHTML = "";
-    data.experience.forEach(exp => {
+    (data.experience || []).forEach(exp => {
       const durationFormatted = calculateDuration(exp.startDate, exp.endDate);
       const timelineItem = document.createElement("div");
       timelineItem.className = "timeline-item";
@@ -636,7 +637,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // 6. Testimonials Render — Book Carousel
-    const allTestimonials = [...data.testimonials, ...getApprovedReviews()];
+    const allTestimonials = [...(data.testimonials || []), ...getApprovedReviews()];
     window._testimonialsData = allTestimonials;
     renderTestimonialPage(0);
 
@@ -650,6 +651,7 @@ document.addEventListener("DOMContentLoaded", () => {
     projectsContainer.innerHTML = "";
     const data = portfolioData[currentLang];
 
+    if (!data.projects) data.projects = [];
     const filteredProjects = filter === "all"
       ? data.projects
       : data.projects.filter(p => p.category === filter);
@@ -799,6 +801,8 @@ document.addEventListener("DOMContentLoaded", () => {
   langToggleBtn.textContent = currentLang.toUpperCase();
   translateStaticLayout();
   renderDynamicCV();
+  renderNewSections();
+  translateNewSections();
 
   // --- 9. Project Filtering ---
   document.querySelectorAll(".tab-btn").forEach(tab => {
@@ -1197,10 +1201,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const noPending = document.getElementById("no-pending-reviews");
     if (noPending) noPending.textContent = trans.noPendingReviews || "No pending reviews.";
   }
-
-  // Render new sections on initial load
-  renderNewSections();
-  translateNewSections();
 
   // Animate counters on page load (not just on scroll)
   setTimeout(() => animateCounters(), 800);
