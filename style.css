@@ -1,58 +1,70 @@
 /* ==========================================================================
    DESIGN SYSTEM & CUSTOM VARIABLE DEFINITIONS
    ========================================================================== */
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@200;300;400;500;600;700;800;900&display=swap');
 
 :root {
   /* Font Family definitions */
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: 'Fira Code', 'Courier New', Courier, monospace;
 
+  /* Font Weight tokens */
+  --fw-thin: 200;
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-extrabold: 800;
+  --fw-black: 900;
+
   /* Accent Color presets (Defaults to Emerald) */
-  --accent-rgb: 16, 185, 129; /* #10b981 */
+  --accent-rgb: 20, 217, 144;
   --accent: rgb(var(--accent-rgb));
-  --accent-glow: rgba(var(--accent-rgb), 0.25);
-  --accent-hover: rgb(5, 150, 105);
+  --accent-glow: rgba(var(--accent-rgb), 0.2);
+  --accent-hover: rgb(10, 180, 115);
 
   /* Light Theme Variables */
-  --bg-primary: #f8fafc;
-  --bg-secondary: #f1f5f9;
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --card-bg: rgba(255, 255, 255, 0.7);
-  --card-hover-bg: rgba(255, 255, 255, 0.9);
-  --border-color: rgba(15, 23, 42, 0.08);
-  --shadow-sm: 0 2px 8px -2px rgba(15, 23, 42, 0.05);
-  --shadow-lg: 0 10px 30px -10px rgba(15, 23, 42, 0.1);
-  --glass-blur: blur(12px);
+  --bg-primary: #f0f0f7;
+  --bg-secondary: #e4e4ed;
+  --text-primary: #14141e;
+  --text-secondary: #5f5f72;
+  --text-muted: #9292a0;
+  --card-bg: rgba(255, 255, 255, 0.65);
+  --card-hover-bg: rgba(255, 255, 255, 0.85);
+  --border-color: rgba(20, 20, 30, 0.06);
+  --shadow-sm: 0 2px 8px -2px rgba(20, 20, 30, 0.04);
+  --shadow-lg: 0 10px 30px -10px rgba(20, 20, 30, 0.08);
+  --glass-blur: blur(14px);
 
   /* Custom Scrollbar and UI Details */
-  --scrollbar-bg: #e2e8f0;
-  --scrollbar-thumb: #cbd5e1;
+  --scrollbar-bg: #dcdce6;
+  --scrollbar-thumb: #b8b8c8;
 
   --transition-speed: 0.3s;
 }
 
 /* Dark Theme Variables override */
 [data-theme="dark"] {
-  --bg-primary: #0b0c10;
-  --bg-secondary: #13151c;
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --card-bg: rgba(19, 21, 28, 0.65);
-  --card-hover-bg: rgba(25, 28, 38, 0.8);
-  --border-color: rgba(248, 250, 252, 0.06);
-  --shadow-sm: 0 2px 8px -2px rgba(0, 0, 0, 0.5);
-  --shadow-lg: 0 10px 40px -15px rgba(0, 0, 0, 0.7);
-  --scrollbar-bg: #13151c;
-  --scrollbar-thumb: #334155;
+  --bg-primary: #07070d;
+  --bg-secondary: #0e0e18;
+  --text-primary: #e4e4ec;
+  --text-secondary: #767688;
+  --text-muted: #4a4a58;
+  --card-bg: rgba(14, 14, 24, 0.6);
+  --card-hover-bg: rgba(18, 18, 30, 0.8);
+  --border-color: rgba(228, 228, 236, 0.05);
+  --shadow-sm: 0 2px 8px -2px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 10px 40px -15px rgba(0, 0, 0, 0.85);
+  --scrollbar-bg: #0e0e18;
+  --scrollbar-thumb: #282836;
 }
 
 /* Theme presets RGB values helper */
-.theme-emerald { --accent-rgb: 16, 185, 129; --accent-hover: #059669; }
-.theme-cyan { --accent-rgb: 6, 182, 212; --accent-hover: #0891b2; }
-.theme-violet { --accent-rgb: 139, 92, 246; --accent-hover: #7c3aed; }
-.theme-gold { --accent-rgb: 245, 158, 11; --accent-hover: #d97706; }
+.theme-emerald { --accent-rgb: 20, 217, 144; --accent-hover: #0eb473; }
+.theme-cyan { --accent-rgb: 56, 217, 232; --accent-hover: #22c7d6; }
+.theme-violet { --accent-rgb: 180, 144, 250; --accent-hover: #9966ff; }
+.theme-gold { --accent-rgb: 250, 204, 21; --accent-hover: #eab308; }
 
 /* ==========================================================================
    GLOBAL RESET & DECORATIVE BASICS
@@ -71,12 +83,15 @@ html {
 
 body {
   font-family: var(--font-sans);
+  font-weight: var(--fw-regular);
   background-color: var(--bg-primary);
   color: var(--text-primary);
   overflow-x: hidden;
   transition: background-color var(--transition-speed), color var(--transition-speed);
   position: relative;
   min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Custom Cursor */
@@ -194,15 +209,25 @@ body {
    TYPOGRAPHY & UTILITIES
    ========================================================================== */
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 700;
+  font-weight: var(--fw-bold);
   color: var(--text-primary);
-  line-height: 1.2;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
 }
+
+h1 { font-weight: var(--fw-black); letter-spacing: -0.03em; }
+h2 { font-weight: var(--fw-extrabold); }
+h3 { font-weight: var(--fw-bold); }
+h4 { font-weight: var(--fw-semibold); }
 
 p {
   color: var(--text-secondary);
-  line-height: 1.6;
+  line-height: 1.7;
+  font-weight: var(--fw-regular);
 }
+
+strong { font-weight: var(--fw-semibold); }
+small { font-weight: var(--fw-light); font-size: 0.85rem; }
 
 a {
   color: var(--accent);
@@ -213,6 +238,17 @@ a {
 a:hover {
   color: var(--accent-hover);
 }
+
+.text-muted { color: var(--text-muted) !important; }
+.text-accent { color: var(--accent) !important; }
+.fw-thin { font-weight: var(--fw-thin) !important; }
+.fw-light { font-weight: var(--fw-light) !important; }
+.fw-regular { font-weight: var(--fw-regular) !important; }
+.fw-medium { font-weight: var(--fw-medium) !important; }
+.fw-semibold { font-weight: var(--fw-semibold) !important; }
+.fw-bold { font-weight: var(--fw-bold) !important; }
+.fw-extrabold { font-weight: var(--fw-extrabold) !important; }
+.fw-black { font-weight: var(--fw-black) !important; }
 
 .container {
   max-width: 1200px;
@@ -313,7 +349,7 @@ header {
 
 .nav-links a {
   color: var(--text-secondary);
-  font-weight: 500;
+  font-weight: var(--fw-medium);
   font-size: 0.95rem;
   transition: color 0.2s;
   position: relative;
@@ -407,7 +443,7 @@ header {
   border-radius: 8px;
   color: var(--text-secondary);
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: var(--fw-medium);
   display: flex;
   align-items: center;
   gap: 6px;
@@ -528,20 +564,24 @@ header {
 
 .hero-subtitle {
   font-family: var(--font-mono);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
+  font-weight: var(--fw-medium);
   color: var(--accent);
   margin-bottom: 12px;
 }
 
 .hero-title {
-  font-size: 3.5rem;
-  letter-spacing: -2px;
+  font-size: 3.8rem;
+  letter-spacing: -0.03em;
   margin-bottom: 15px;
+  font-weight: var(--fw-black);
+  line-height: 1.05;
 }
 
 .typewriter-text {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-size: 1.8rem;
+  font-weight: var(--fw-light);
   color: var(--text-secondary);
   border-right: 2px solid var(--accent);
   white-space: nowrap;
@@ -659,6 +699,8 @@ header {
   margin-bottom: 45px;
   position: relative;
   display: inline-block;
+  font-weight: var(--fw-extrabold);
+  letter-spacing: -0.02em;
 }
 
 .section-title::after {
@@ -683,6 +725,7 @@ header {
 
 .about-text {
   font-size: 1.1rem;
+  font-weight: var(--fw-regular);
   line-height: 1.8;
 }
 
@@ -758,10 +801,12 @@ header {
 .project-title {
   font-size: 1.3rem;
   margin-bottom: 12px;
+  font-weight: var(--fw-bold);
 }
 
 .project-desc {
   font-size: 0.95rem;
+  font-weight: var(--fw-regular);
   margin-bottom: 20px;
   flex-grow: 1;
 }
@@ -819,6 +864,7 @@ header {
 
 .skill-group-title {
   font-size: 1.15rem;
+  font-weight: var(--fw-semibold);
   margin-bottom: 20px;
   border-bottom: 1px solid var(--border-color);
   padding-bottom: 8px;
@@ -959,6 +1005,7 @@ header {
 .role-title {
   font-size: 1.2rem;
   margin-bottom: 2px;
+  font-weight: var(--fw-bold);
 }
 
 .company-name {
@@ -1146,7 +1193,7 @@ header {
 
 .form-group label {
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: var(--fw-semibold);
   color: var(--text-secondary);
 }
 
@@ -1994,7 +2041,8 @@ footer {
 
 .footer-text {
   font-size: 0.9rem;
-  color: var(--text-secondary);
+  color: var(--text-muted);
+  font-weight: var(--fw-regular);
 }
 
 .footer-signature {
@@ -2122,50 +2170,79 @@ footer {
   .hero-wrapper {
     flex-direction: column-reverse;
     justify-content: center;
+    align-items: center;
     text-align: center;
-    gap: 24px;
+    gap: 28px;
     min-height: auto;
-    padding: 20px 0;
+    padding: 30px 0 20px;
   }
 
   .hero-content {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
   }
 
   .hero-title {
-    font-size: 2.2rem;
-    letter-spacing: -1px;
+    font-size: 2.4rem;
+    letter-spacing: -0.03em;
+    text-align: center;
+    width: 100%;
   }
 
   .typewriter-text {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
+    text-align: center;
+    white-space: normal;
+    border-right: none;
+    animation: none;
   }
 
   .hero-subtitle {
     font-size: 0.9rem;
+    text-align: center;
   }
 
   .hero-description {
-    font-size: 0.95rem;
+    font-size: 1rem;
     max-width: 100%;
+    text-align: center;
+    padding: 0 8px;
   }
 
   .hero-now-strip {
     font-size: 0.75rem;
-    padding: 6px 12px;
+    padding: 6px 14px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .hero-actions {
     flex-direction: column;
     width: 100%;
+    max-width: 320px;
     gap: 12px;
   }
 
   .hero-actions .btn {
     width: 100%;
     justify-content: center;
+  }
+
+  .hero-avatar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .avatar-container {
+    width: 200px;
+    height: 200px;
+  }
+
+  .avatar-inner {
+    font-size: 3rem;
   }
 
   .section {
@@ -2245,11 +2322,25 @@ footer {
     padding: 0 16px;
   }
 
+  .chatbot-wrapper {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 24px;
+  }
+
   .chatbot-window {
     width: calc(100vw - 40px);
-    right: -10px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    right: auto;
+    bottom: 80px;
     height: 480px;
     max-height: 70vh;
+  }
+
+  .chatbot-window.show {
+    transform: translateX(-50%) translateY(0);
   }
 
   .chatbot-bubble {
@@ -2584,7 +2675,7 @@ footer {
 .stat-counter-label {
   font-size: 0.85rem;
   color: var(--text-secondary);
-  font-weight: 500;
+  font-weight: var(--fw-medium);
 }
 
 @media (max-width: 768px) {
