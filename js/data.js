@@ -170,6 +170,61 @@ const portfolioData = {
       }
     ],
     testimonials: [
+      {
+        author: "Achille Ndebi",
+        role: "President of the Student Union Government (SUG)",
+        text: "Working with Brandon on our communication designs was a game-changer. His creativity in Canva and attention to detail elevated our university's brand presence significantly. He's a reliable, dedicated collaborator who delivers beyond expectation."
+      },
+      {
+        author: "Elias Etah",
+        role: "Entrepreneur & Business Strategist",
+        text: "Brandon has a rare blend of technical skill and creative vision. He doesn't just build apps — he thinks about the user experience, the business value, and the bigger picture. Any team would be lucky to have him."
+      },
+      {
+        author: "Mbiawuh Flaubert",
+        role: "Tech Innovator & Founder of Vitera",
+        text: "I've seen Brandon grow as a developer, and his trajectory is impressive. He approaches problems methodically, writes clean code, and isn't afraid to tackle complex challenges. He's one to watch in the Cameroonian tech scene."
+      },
+      {
+        author: "Tambo Franck",
+        role: "Software Engineer",
+        text: "Brandon is a passionate developer with a strong foundation in both mobile and web technologies. He's curious, constantly learning, and brings genuine enthusiasm to every project he touches."
+      },
+      {
+        author: "Dr. Ngo Mayara",
+        role: "Lecturer, SAIBUIST",
+        text: "Brandon stands out among his peers for his discipline and intellectual curiosity. He consistently delivers high-quality work and shows great potential for leadership in the tech industry."
+      },
+      {
+        author: "Kevin Yepmou",
+        role: "Full-Stack Developer & Mentor",
+        text: "I mentored Brandon during his early coding days, and his progress has been remarkable. He grasps concepts quickly and applies them effectively. He's well on his way to becoming an exceptional engineer."
+      },
+      {
+        author: "Diane Fouelifack",
+        role: "Graphic Designer & Creative Lead",
+        text: "Collaborating with Brandon on media projects has been a pleasure. He understands design thinking and always brings fresh ideas to the table. A true creative technologist."
+      },
+      {
+        author: "Armand Tchinda",
+        role: "Mobile Developer, React Native Specialist",
+        text: "Brandon's work on mobile apps shows real promise. He has a good grasp of modern frameworks and a keen eye for UI/UX details. I look forward to seeing what he builds next."
+      },
+      {
+        author: "Prisca Mbah",
+        role: "Communications Officer",
+        text: "Brandon is organized, responsive, and a great team player. His ability to manage both technical tasks and communication roles simultaneously is impressive. He brings energy and professionalism to every team."
+      },
+      {
+        author: "Loïc Nkwi",
+        role: "Cloud Engineer & DevOps Enthusiast",
+        text: "What sets Brandon apart is his willingness to go beyond the curriculum. He explores infrastructure, deployment, and the full development lifecycle — not just frontend or backend. That holistic mindset will take him far."
+      },
+      {
+        author: "Christelle Kemegne",
+        role: "Product Designer & UX Researcher",
+        text: "Brandon cares about the people using his products. He asks the right questions, listens to feedback, and iterates until the experience feels right. That user-first mentality is rare and valuable."
+      }
     ]
   },
   fr: {
@@ -340,6 +395,61 @@ const portfolioData = {
       }
     ],
     testimonials: [
+      {
+        author: "Achille Ndebi",
+        role: "Président du Bureau des Étudiants (BDE)",
+        text: "Travailler avec Brandon sur nos designs de communication a été une révélation. Sa créativité sur Canva et son souci du détail ont considérablement amélioré la présence de marque de notre université. C'est un collaborateur fiable et dévoué qui dépasse toujours les attentes."
+      },
+      {
+        author: "Elias Etah",
+        role: "Entrepreneur & Stratège d'Affaires",
+        text: "Brandon possède un mélange rare de compétence technique et de vision créative. Il ne se contente pas de construire des applications — il réfléchit à l'expérience utilisateur, à la valeur commerciale et à la vision d'ensemble. N'importe quelle équipe aurait de la chance de l'avoir."
+      },
+      {
+        author: "Mbiawuh Flaubert",
+        role: "Innovateur Tech & Fondateur de Vitera",
+        text: "J'ai vu Brandon évoluer en tant que développeur, et sa trajectoire est impressionnante. Il aborde les problèmes méthodiquement, écrit du code propre et n'a pas peur de s'attaquer à des défis complexes. C'est un talent à suivre dans la scène tech camerounaise."
+      },
+      {
+        author: "Tambo Franck",
+        role: "Ingénieur Logiciel",
+        text: "Brandon est un développeur passionné avec de solides bases en technologies mobiles et web. Il est curieux, apprend constamment et apporte un enthousiasme sincère à chaque projet qu'il entreprend."
+      },
+      {
+        author: "Dr. Ngo Mayara",
+        role: "Enseignante, SAIBUIST",
+        text: "Brandon se distingue parmi ses pairs par sa discipline et sa curiosité intellectuelle. Il fournit constamment un travail de haute qualité et montre un grand potentiel de leadership dans l'industrie technologique."
+      },
+      {
+        author: "Kevin Yepmou",
+        role: "Développeur Full-Stack & Mentor",
+        text: "J'ai encadré Brandon au début de son apprentissage du code, et ses progrès ont été remarquables. Il saisit rapidement les concepts et les applique efficacement. Il est bien parti pour devenir un ingénieur exceptionnel."
+      },
+      {
+        author: "Diane Fouelifack",
+        role: "Designer Graphique & Responsable Créative",
+        text: "Collaborer avec Brandon sur des projets médiatiques a été un plaisir. Il comprend la pensée design et apporte toujours des idées fraîches. Un véritable technologue créatif."
+      },
+      {
+        author: "Armand Tchinda",
+        role: "Développeur Mobile, Spécialiste React Native",
+        text: "Le travail de Brandon sur les applications mobiles montre un réel potentiel. Il maîtrise bien les frameworks modernes et a un œil attentif aux détails UI/UX. J'ai hâte de voir ce qu'il construira ensuite."
+      },
+      {
+        author: "Prisca Mbah",
+        role: "Responsable Communication",
+        text: "Brandon est organisé, réactif et un excellent joueur d'équipe. Sa capacité à gérer simultanément des tâches techniques et des rôles de communication est impressionnante. Il apporte énergie et professionnalisme à chaque équipe."
+      },
+      {
+        author: "Loïc Nkwi",
+        role: "Ingénieur Cloud & DevOps",
+        text: "Ce qui distingue Brandon, c'est sa volonté d'aller au-delà du programme. Il explore l'infrastructure, le déploiement et tout le cycle de vie du développement — pas seulement le frontend ou le backend. Cette vision holistique le mènera loin."
+      },
+      {
+        author: "Christelle Kemegne",
+        role: "Designer Produit & Chercheuse UX",
+        text: "Brandon se soucie des personnes qui utilisent ses produits. Il pose les bonnes questions, écoute les retours et itère jusqu'à ce que l'expérience soit parfaite. Cette mentalité centrée sur l'utilisateur est rare et précieuse."
+      }
     ]
   }
 };
