@@ -292,6 +292,15 @@ document.addEventListener("DOMContentLoaded", () => {
         // Show Admin Navigation link globally on main interface
         adminNavLink.style.display = "block";
         
+        // Show the admin section
+        const adminSection = document.getElementById("admin");
+        if (adminSection) {
+          adminSection.style.display = "block";
+          adminSection.classList.add("active");
+          // Trigger scroll reveal
+          if (window.renderPendingReviews) window.renderPendingReviews();
+        }
+        
         // Save access key in localStorage to persist Admin Dashboard across page reloads
         localStorage.setItem("portfolio-admin-unlocked", "true");
         
@@ -318,5 +327,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // Check if admin dashboard was previously unlocked
   if (localStorage.getItem("portfolio-admin-unlocked") === "true") {
     adminNavLink.style.display = "block";
+    const adminSection = document.getElementById("admin");
+    if (adminSection) {
+      adminSection.style.display = "block";
+      adminSection.classList.add("active");
+      if (window.renderPendingReviews) window.renderPendingReviews();
+    }
   }
 });

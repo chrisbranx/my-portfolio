@@ -64,6 +64,10 @@
         </ul>
       </nav>
 
+      <button class="hamburger" id="hamburger-btn" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
       <div class="controls">
         <!-- Ambient sound play -->
         <button class="control-btn" id="ambient-toggle" title="Toggle Lo-fi Ambient Music" aria-label="Toggle ambient music">
@@ -361,6 +365,28 @@
       <div class="testimonials-grid" id="testimonials-container">
         <!-- Rendered dynamically by app.js -->
       </div>
+
+      <div class="review-form-wrapper">
+        <h3 class="review-form-title" id="review-form-heading">Leave a Review</h3>
+        <form class="glass-card review-form" id="review-form" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="review-name" id="review-label-name">Your Name</label>
+              <input type="text" id="review-name" class="form-control hover-target" placeholder="Jane Doe" required>
+            </div>
+            <div class="form-group">
+              <label for="review-role" id="review-label-role">Your Title / Role</label>
+              <input type="text" id="review-role" class="form-control hover-target" placeholder="Collaborator, Mentor, etc.">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="review-text" id="review-label-text">Your Review</label>
+            <textarea id="review-text" class="form-control hover-target" placeholder="Share your experience working with Brandon..." required rows="4"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary hover-target" id="review-submit-btn" style="width:100%; justify-content:center;">Submit Review</button>
+          <div class="form-success-msg" id="review-success-alert">Thanks! Your review has been submitted for approval.</div>
+        </form>
+      </div>
     </section>
 
     <!-- Contact Section -->
@@ -453,7 +479,7 @@
     </section>
 
     <!-- Insights / Admin Section -->
-    <section class="section reveal" id="admin" style="display:none;">
+    <section class="section reveal" id="admin" style="display:none;" data-admin="true">
       <div class="admin-header">
         <h2 class="section-title" id="admin-section-heading">Live Portfolio Insights</h2>
         <span style="font-family:var(--font-mono); font-size:0.8rem; background:rgba(var(--accent-rgb),0.1); padding:4px 10px; border-radius:12px; color:var(--accent);">Admin Dashboard</span>
@@ -487,6 +513,13 @@
           <ul class="queries-list" id="popular-queries-list">
             <!-- Populated dynamically -->
           </ul>
+        </div>
+      </div>
+
+      <div class="admin-reviews">
+        <h3 id="insights-reviews-title">Pending Reviews</h3>
+        <div class="admin-reviews-list" id="pending-reviews-container">
+          <p class="admin-reviews-empty" id="no-pending-reviews">No pending reviews.</p>
         </div>
       </div>
     </section>

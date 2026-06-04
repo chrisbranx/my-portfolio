@@ -660,7 +660,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // 6. Testimonials Render
     const testimonialsContainer = document.getElementById("testimonials-container");
     testimonialsContainer.innerHTML = "";
-    data.testimonials.forEach(test => {
+    const approvedReviews = getApprovedReviews();
+    const allTestimonials = [...data.testimonials, ...approvedReviews];
+    allTestimonials.forEach(test => {
       const card = document.createElement("div");
       card.className = "glass-card testimonial-card hover-target";
       card.innerHTML = `
@@ -798,6 +800,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Terminal button label
     document.getElementById("terminal-btn-text").textContent = trans.terminalBtn;
+
+    // Review Form
+    const reviewFormHeading = document.getElementById("review-form-heading");
+    if (reviewFormHeading) reviewFormHeading.textContent = trans.reviewHeading;
+    const reviewLabelName = document.getElementById("review-label-name");
+    if (reviewLabelName) reviewLabelName.textContent = trans.reviewLabelName;
+    const reviewLabelRole = document.getElementById("review-label-role");
+    if (reviewLabelRole) reviewLabelRole.textContent = trans.reviewLabelRole;
+    const reviewLabelText = document.getElementById("review-label-text");
+    if (reviewLabelText) reviewLabelText.textContent = trans.reviewLabelText;
+    const reviewSubmitBtn = document.getElementById("review-submit-btn");
+    if (reviewSubmitBtn) reviewSubmitBtn.textContent = trans.reviewSubmit;
+    const reviewSuccessAlert = document.getElementById("review-success-alert");
+    if (reviewSuccessAlert) reviewSuccessAlert.textContent = trans.reviewSuccess;
 
     // Insights Panel
     document.getElementById("admin-section-heading").textContent = trans.visitorStats;
@@ -1169,7 +1185,37 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target === commandPalette) closePalette();
   });
 
-  // --- 19. Extend renderDynamicCV ---
+  // --- 19a. Mobile Hamburger Menu ---
+  const hamburger = document.getElementById("hamburger-btn");
+  const navLinks = document.getElementById("menu-links");
+  if (hamburger && navLinks) {
+    hamburger.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+      hamburger.classList.toggle("open");
+      hamburger.setAttribute("aria-expanded", navLinks.classList.contains("open"));
+    });
+    document.querySelectorAll("#menu-links a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        hamburger.classList.remove("open");
+        hamburger.setAttribute("aria-expanded", "false");
+      });
+    });
+  }
+
+  // Show admin section on hash navigation
+  window.addEventListener("hashchange", () => {
+    if (location.hash === "#admin") {
+      const adminSec = document.getElementById("admin");
+      if (adminSec && adminSec.style.display !== "block") {
+        adminSec.style.display = "block";
+        adminSec.classList.add("active");
+        if (window.renderPendingReviews) window.renderPendingReviews();
+      }
+    }
+  });
+
+  // --- 19b. Extend renderDynamicCV ---
   function renderNewSections() {
     applySectionNumbers();
     renderTechMarquee();
@@ -1185,6 +1231,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (snippetsTitle) snippetsTitle.textContent = trans.snippets || "Code Snippets";
     const activityTitle = document.getElementById("activity-section-heading");
     if (activityTitle) activityTitle.textContent = trans.activity || "Contribution Activity";
+    const reviewsTitle = document.getElementById("insights-reviews-title");
+    if (reviewsTitle) reviewsTitle.textContent = trans.pendingReviewsTitle || "Pending Reviews";
+    const noPending = document.getElementById("no-pending-reviews");
+    if (noPending) noPending.textContent = trans.noPendingReviews || "No pending reviews.";
   }
 
   // Render new sections on initial load
@@ -1202,6 +1252,104 @@ document.addEventListener("DOMContentLoaded", () => {
         .catch(err => console.log("[PWA] Service Worker registration failed: ", err));
     });
   }
+
+  // --- Review System (localStorage-based) ---
+
+  function escapeHtml(str) {
+    const div = document.createElement("div");
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  function getReviews() {
+    try {
+      return JSON.parse(localStorage.getItem("portfolio_reviews") || "[]");
+    } catch { return []; }
+  }
+
+  function saveReviews(reviews) {
+    localStorage.setItem("portfolio_reviews", JSON.stringify(reviews));
+  }
+
+  function getApprovedReviews() {
+    return getReviews().filter(r => r.approved);
+  }
+
+  function getPendingReviews() {
+    return getReviews().filter(r => !r.approved);
+  }
+
+  function submitReview(author, role, text) {
+    const reviews = getReviews();
+    reviews.push({ author, role, text, approved: false, date: Date.now(), id: Date.now() });
+    saveReviews(reviews);
+  }
+
+  function approveReview(id) {
+    const reviews = getReviews();
+    const r = reviews.find(x => x.id === id);
+    if (r) { r.approved = true; saveReviews(reviews); }
+  }
+
+  function deleteReview(id) {
+    saveReviews(getReviews().filter(x => x.id !== id));
+  }
+
+  function renderPendingReviews() {
+    const container = document.getElementById("pending-reviews-container");
+    if (!container) return;
+    const pending = getPendingReviews();
+    if (pending.length === 0) {
+      container.innerHTML = '<p class="admin-reviews-empty" id="no-pending-reviews">No pending reviews.</p>';
+      return;
+    }
+    container.innerHTML = pending.map(r => `
+      <div class="glass-card admin-review-card">
+        <div class="admin-review-body">
+          <h4>${escapeHtml(r.author)}</h4>
+          <span class="admin-review-role">${escapeHtml(r.role || "Visitor")}</span>
+          <p class="admin-review-text">${escapeHtml(r.text)}</p>
+        </div>
+        <div class="admin-review-actions">
+          <button class="admin-review-btn approve" onclick="approveAndRefresh(${r.id})">Approve</button>
+          <button class="admin-review-btn delete" onclick="deleteAndRefresh(${r.id})">Delete</button>
+        </div>
+      </div>
+    `).join("");
+  }
+
+  window.approveAndRefresh = function(id) {
+    approveReview(id);
+    renderPendingReviews();
+    renderNewSections();
+  };
+
+  window.deleteAndRefresh = function(id) {
+    deleteReview(id);
+    renderPendingReviews();
+    renderNewSections();
+  };
+
+  // Review form handler
+  const reviewForm = document.getElementById("review-form");
+  if (reviewForm) {
+    reviewForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const name = document.getElementById("review-name").value.trim();
+      const role = document.getElementById("review-role").value.trim();
+      const text = document.getElementById("review-text").value.trim();
+      if (!name || !text) return;
+      submitReview(name, role, text);
+      reviewForm.reset();
+      document.getElementById("review-success-alert").classList.add("show");
+      setTimeout(() => {
+        document.getElementById("review-success-alert").classList.remove("show");
+      }, 3000);
+    });
+  }
+
+  // Expose admin render for the terminal unlock
+  window.renderPendingReviews = renderPendingReviews;
 
   // Share variables globally for chatbot and terminal interfaces
   window.currentLang = currentLang;
