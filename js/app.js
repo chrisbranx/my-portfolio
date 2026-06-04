@@ -538,13 +538,16 @@ document.addEventListener("DOMContentLoaded", () => {
         svgIcon = `<svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M1 1.5A1.5 1.5 0 0 1 2.5 0h11A1.5 1.5 0 0 1 15 1.5v13a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 14.5zM2.5 1a.5.5 0 0 0-.5.5v13a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5v-13a.5.5 0 0 0-.5-.5z"/><path d="M4 10a1 1 0 1 1-2 0 1 1 0 0 1 2 0m3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m3 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/></svg>`;
       } else if (groupName === "soft") {
         svgIcon = `<svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/></svg>`;
+      } else if (groupName === "design") {
+        svgIcon = `<svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/></svg>`;
       }
 
       const groupLangLabel = {
         languages: currentLang === "en" ? "Languages" : "Langages",
         frameworks: currentLang === "en" ? "Frameworks & Libs" : "Frameworks & Libs",
         infrastructure: currentLang === "en" ? "SysAdmin & DevOps" : "SysAdmin & DevOps",
-        soft: currentLang === "en" ? "Methodology" : "Méthodologie"
+        soft: currentLang === "en" ? "Methodology" : "Méthodologie",
+        design: currentLang === "en" ? "Design & Creative" : "Design & Créatif"
       };
 
       title.innerHTML = `${svgIcon} ${groupLangLabel[groupName] || groupName}`;

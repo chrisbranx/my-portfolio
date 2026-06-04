@@ -4,7 +4,7 @@
 const portfolioData = {
   en: {
     name: "Chris Brandon",
-    title: "Software Engineering Student | Aspiring Full-Stack Developer",
+    title: "Software Engineer | Full-Stack Developer",
     titles: ["build mobile apps", "write clean code", "design user experiences", "solve real problems"],
     availability: "Let's Collaborate!",
     location: "SAIBUIST",
@@ -12,7 +12,7 @@ const portfolioData = {
     phone: "+237 688 104 091",
     github: "github.com/chrisbranx",
     linkedin: "linkedin.com/in/brandon-funi",
-    about: "I'm Brandon Funi, an aspiring Software Engineer currently studying at Saint Austin International Bilingual University of Science and Technology (SAIBUIST). With a strong passion for innovation and technology, I specialize in mobile app development, web development, and building digital solutions that address real-world challenges.\n\nBeyond my studies, I serve as the Communication Delegate for the entire university since November 2024. I also contribute to my community as a Media Head for my local church, managing live broadcasts on platforms like Facebook and YouTube.",
+    about: "I'm Brandon Funi, a Software Engineer with a passion for building mobile and web applications that solve real problems. I specialize in full-stack development with React Native, Node.js, and modern cloud infrastructure — turning ideas into polished, user-friendly digital products.\n\nWhat I offer: clean, maintainable code, cross-platform mobile apps, responsive web interfaces, Canva graphic design, and clear communication from concept to deployment.\n\nWhy me? I combine technical discipline with creative thinking. I'm reliable, self-driven, and I care about the people using my products. Whether leading a team or working independently, I deliver quality on time.",
     experience: [
       {
         role: "Intern & Group Leader — Full-Stack Developer",
@@ -26,32 +26,107 @@ const portfolioData = {
           "Led the development of MINPOSTEL's staff management system.",
           "Built leadership, project management, and full-stack development skills."
         ]
-      },
+      }
+    ],
+    education: [
       {
-        role: "Communication Delegate",
-        company: "SAIBUIST Student Union Government",
-        period: "Nov 2024 – Present",
-        startDate: "2024-11-01",
-        endDate: null,
-        logo: "sug",
+        degree: "GCE Advanced Level (Sciences)",
+        institution: "Amasia Bilingual Secondary School",
+        period: "2025",
         achievements: [
-          "Serving as the official mouthpiece between the student body and administration.",
-          "Managing all official communications, announcements, and public relations.",
-          "Collaborating with the President on Canva designs for university campaigns."
+          "Obtained GCE Advanced Level certificate in the sciences track."
         ]
       },
       {
-        role: "Media Head",
-        company: "Local Church — Facebook & YouTube Broadcasts",
-        period: "Present",
-        startDate: "2024-01-01",
-        endDate: null,
-        logo: "church",
+        degree: "GCE Ordinary Level",
+        institution: "Amasia Bilingual Secondary School",
+        period: "2022",
         achievements: [
-          "Managing all technical aspects of live streaming for weekly services.",
-          "Growing online congregation through digital outreach and social media engagement.",
-          "Producing multimedia content for community events and special programs."
+          "Obtained GCE Ordinary Level certificate."
         ]
+      }
+    ],
+    skills: {
+      languages: [
+        { name: "JavaScript", level: "Advanced", percent: 85 },
+        { name: "Python", level: "Intermediate", percent: 75 },
+        { name: "PHP", level: "Intermediate", percent: 70 },
+        { name: "C", level: "Intermediate", percent: 65 },
+        { name: "HTML5 / CSS3", level: "Advanced", percent: 90 }
+      ],
+      frameworks: [
+        { name: "React Native", level: "Advanced", percent: 85 },
+        { name: "Flutter", level: "Intermediate", percent: 75 },
+        { name: "Node.js / Express.js", level: "Advanced", percent: 80 },
+        { name: "Bootstrap", level: "Advanced", percent: 85 }
+      ],
+      infrastructure: [
+        { name: "Supabase / PostgreSQL", level: "Advanced", percent: 80 },
+        { name: "MongoDB", level: "Intermediate", percent: 75 },
+        { name: "MySQL", level: "Advanced", percent: 85 },
+        { name: "REST APIs", level: "Advanced", percent: 85 },
+        { name: "Git / Docker", level: "Intermediate", percent: 70 }
+      ],
+      design: [
+        { name: "Canva Designing", level: "Advanced", percent: 90 },
+        { name: "UI/UX Principles", level: "Intermediate", percent: 75 }
+      ],
+      soft: [
+        { name: "Communication & Public Speaking", level: "Advanced", percent: 90 },
+        { name: "Agile Development", level: "Advanced", percent: 85 },
+        { name: "API-first Design", level: "Advanced", percent: 80 },
+        { name: "Microservices", level: "Intermediate", percent: 70 },
+        { name: "Mobile-first Approach", level: "Advanced", percent: 90 }
+      ]
+    },
+    projects: [
+      {
+        id: "libuconnect",
+        title: "LIBU Connect App",
+        category: "web",
+        badge: "New",
+        desc: "A comprehensive student portal designed for schools, featuring course enrollment, grade tracking, schedule management, library access, and seamless communication.",
+        features: ["Course & grade tracking", "Library access", "Teacher-student communication"],
+        stack: ["React Native", "Express.js", "PostgreSQL"],
+        github: "github.com/chrisbranx",
+        demo: "#",
+        stats: { stars: 8, forks: 1, commits: 30 }
+      },
+      {
+        id: "saintaustin",
+        title: "Saint Austin Verification App",
+        category: "web",
+        badge: "Featured",
+        desc: "QR-based orientation and verification system for Saint Austin International University, enabling efficient check-in processes.",
+        features: ["QR code generation", "Efficient ticket verification", "Digital navigation"],
+        stack: ["React", "Node.js", "QR Technology"],
+        github: "github.com/chrisbranx",
+        demo: "#",
+        stats: { stars: 12, forks: 2, commits: 50 }
+      },
+      {
+        id: "univhub",
+        title: "University Hub",
+        category: "web",
+        badge: "New",
+        desc: "Academic portal for first-year students offering easy access to resources, digital library, and interaction features.",
+        features: ["Year 1 resource access", "Digital library integration", "Teacher-student interaction"],
+        stack: ["React", "Node.js", "MongoDB"],
+        github: "github.com/chrisbranx",
+        demo: "#",
+        stats: { stars: 5, forks: 0, commits: 20 }
+      },
+      {
+        id: "carko237",
+        title: "Carko237",
+        category: "web",
+        badge: "Featured",
+        desc: "A leading online marketplace for Cameroonian fashion, connecting buyers and sellers.",
+        features: ["Fashion marketplace", "Buyer/seller connection", "Trend shopping"],
+        stack: ["React", "Node.js", "E-commerce"],
+        github: "github.com/chrisbranx",
+        demo: "#",
+        stats: { stars: 20, forks: 5, commits: 80 }
       }
     ],
     certifications: [
@@ -121,7 +196,7 @@ const portfolioData = {
   },
   fr: {
     name: "Chris Brandon",
-    title: "Étudiant en Génie Logiciel | Futur Développeur Full-Stack",
+    title: "Ingénieur Logiciel | Développeur Full-Stack",
     titles: ["crée des apps mobiles", "écris du code propre", "conçois des expériences", "résous des vrais problèmes"],
     availability: "Ouvert à la collaboration",
     location: "SAIBUIST",
@@ -129,7 +204,7 @@ const portfolioData = {
     phone: "+237 688 104 091",
     github: "github.com/chrisbranx",
     linkedin: "linkedin.com/in/brandon-funi",
-    about: "Je suis Chris Brandon, un futur ingénieur logiciel étudiant actuellement à la Saint Austin International Bilingual University of Science and Technology (SAIBUIST). Passionné par l'innovation et la technologie, je me spécialise dans le développement d'applications mobiles, le développement web et la création de solutions numériques qui répondent à des défis réels.\n\nAu-delà de mes études, je sers de Délégué à la Communication pour l'ensemble de l'université depuis novembre 2024. Je contribue également à ma communauté en tant que Responsable Média de mon église, gérant les diffusions en direct sur des plateformes comme Facebook et YouTube.",
+    about: "Je suis Brandon Funi, un Ingénieur Logiciel passionné par la création d'applications mobiles et web qui résolvent de vrais problèmes. Je suis spécialisé dans le développement full-stack avec React Native, Node.js et l'infrastructure cloud moderne — je transforme des idées en produits numériques polis et conviviaux.\n\nCe que j'offre : du code propre et maintenable, des applications mobiles cross-platform, des interfaces web responsives, du design graphique Canva, et une communication claire du concept au déploiement.\n\nPourquoi moi ? Je combine discipline technique et pensée créative. Je suis fiable, autonome, et je me soucie des personnes qui utilisent mes produits. Que ce soit en tant que chef d'équipe ou travailleur indépendant, je livre de la qualité à temps.",
     experience: [
       {
         role: "Stagiaire & Chef de Groupe — Développeur Full-Stack",
@@ -143,42 +218,23 @@ const portfolioData = {
           "Dirigé le développement du système de gestion du personnel du MINPOSTEL.",
           "Renforcé les compétences en leadership, gestion de projet et développement full-stack."
         ]
-      },
-      {
-        role: "Délégué à la Communication",
-        company: "Saint Austin International Bilingual University of Science and Technology (SAIBUIST)",
-        period: "Nov 2024 - Présent",
-        startDate: "2024-11-01",
-        endDate: "Present",
-        logo: "saibuist",
-        achievements: [
-          "Sert de liaison principale entre les étudiants et l'administration de l'université.",
-          "Facilite la communication claire et efficace des politiques et annonces de l'université.",
-          "Organise et gère les canaux de communication pour l'ensemble des étudiants."
-        ]
-      },
-      {
-        role: "Responsable Média",
-        company: "Église Locale",
-        period: "Présent",
-        startDate: "2023-01-01",
-        endDate: "Present",
-        logo: "church",
-        achievements: [
-          "Gère les productions de diffusion en direct sur des plateformes comme Facebook et YouTube.",
-          "Supervise le mixage audio et vidéo à l'aide de OBS Studio et VMix.",
-          "Coordonne l'équipe média pour assurer le bon déroulement des services et événements."
-        ]
       }
     ],
     education: [
       {
-        degree: "Étudiant en Génie Logiciel",
-        institution: "Saint Austin International Bilingual University of Science and Technology (SAIBUIST)",
-        period: "Présent",
+        degree: "GCE Advanced Level (Sciences)",
+        institution: "Amasia Bilingual Secondary School",
+        period: "2025",
         achievements: [
-          "Conception de solutions conviviales et percutantes.",
-          "Exploration du développement mobile et web."
+          "Obtention du certificat GCE Advanced Level dans la filière scientifique."
+        ]
+      },
+      {
+        degree: "GCE Ordinary Level",
+        institution: "Amasia Bilingual Secondary School",
+        period: "2022",
+        achievements: [
+          "Obtention du certificat GCE Ordinary Level."
         ]
       }
     ],
@@ -203,40 +259,19 @@ const portfolioData = {
         { name: "REST APIs", level: "Avancé", percent: 85 },
         { name: "Git / Docker", level: "Intermédiaire", percent: 70 }
       ],
+      design: [
+        { name: "Canva Designing", level: "Avancé", percent: 90 },
+        { name: "Principes UI/UX", level: "Intermédiaire", percent: 75 }
+      ],
       soft: [
+        { name: "Communication & Expression Orale", level: "Avancé", percent: 90 },
         { name: "Développement Agile", level: "Avancé", percent: 85 },
         { name: "Conception API-first", level: "Avancé", percent: 80 },
         { name: "Microservices", level: "Intermédiaire", percent: 70 },
         { name: "Mobile-first", level: "Avancé", percent: 90 }
       ]
     },
-    certifications: [
-    ],
     projects: [
-      {
-        id: "linkup",
-        title: "LinkUp",
-        category: "mobile",
-        badge: "Vedette",
-        desc: "Une plateforme sociale et de chat intégrant l'argent mobile pour les transactions P2P. Conçu pour les jeunes et les entrepreneurs pour se connecter et effectuer des transactions de manière transparente.",
-        features: ["Système de chat intégré", "Transactions P2P mobile money", "Ciblé sur les jeunes et entrepreneurs"],
-        stack: ["React Native", "Node.js", "API Mobile Money"],
-        github: "github.com/chrisbranx",
-        demo: "#",
-        stats: { stars: 10, forks: 2, commits: 45 }
-      },
-      {
-        id: "qyra",
-        title: "Qyra",
-        category: "mobile",
-        badge: "Vedette",
-        desc: "Application de médias sociaux futuriste combinant les meilleures fonctionnalités d'Instagram, Twitter et Telegram en une seule plateforme unifiée.",
-        features: ["Fil d'actualité unifié", "Messagerie en temps réel", "Partage média avancé"],
-        stack: ["Flutter", "Dart", "Supabase", "Temps réel"],
-        github: "github.com/chrisbranx",
-        demo: "#",
-        stats: { stars: 15, forks: 3, commits: 60 }
-      },
       {
         id: "libuconnect",
         title: "Application LIBU Connect",
@@ -356,7 +391,7 @@ const portfolioData = {
 // Also export the translation strings for structural layout items
 const textTranslations = {
   en: {
-    subtitle: "Software Engineering Student \u2022 Cameroon-based",
+    subtitle: "Software Engineer \u2022 Cameroon-based",
     navAbout: "About",
     navProjects: "Projects",
     navSkills: "Skills",
