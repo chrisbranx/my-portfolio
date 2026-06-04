@@ -894,7 +894,7 @@ document.addEventListener("DOMContentLoaded", () => {
       contactForm.reset();
       setTimeout(() => {
         successAlert.style.display = "none";
-      }, 5000);
+    }, 10000);
     }
   });
 
