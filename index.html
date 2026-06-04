@@ -79,22 +79,6 @@
           <span id="music-btn-text">Ambient: OFF</span>
         </button>
 
-        <!-- Accent theme selector -->
-        <div class="theme-picker-wrapper">
-          <button class="control-btn" id="accent-dropdown-btn" title="Choose Accent Color" aria-label="Choose accent theme color">
-            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
-              <path d="M4 8a4 4 0 1 1 8 0 4 4 0 0 1-8 0"/>
-            </svg>
-          </button>
-          <div class="theme-dropdown" id="theme-dropdown">
-            <button class="accent-dot dot-emerald active" data-color="emerald" aria-label="Emerald theme"></button>
-            <button class="accent-dot dot-cyan" data-color="cyan" aria-label="Cyan theme"></button>
-            <button class="accent-dot dot-violet" data-color="violet" aria-label="Violet theme"></button>
-            <button class="accent-dot dot-gold" data-color="gold" aria-label="Gold theme"></button>
-          </div>
-        </div>
-
         <!-- Light/Dark Mode toggle -->
         <button class="control-btn" id="theme-toggle" title="Toggle Light/Dark Theme" aria-label="Toggle light dark mode">
           <svg class="sun-icon" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="display:none;">
@@ -109,17 +93,6 @@
         <button class="control-btn" id="lang-toggle" title="Toggle Language (EN/FR)" aria-label="Toggle language">
           EN
         </button>
-
-        <!-- Terminal toggle -->
-        <button class="control-btn" id="terminal-toggle-btn" title="Open Developer Terminal" aria-label="Toggle terminal mode">
-          <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-            <path d="M5.854 4.854a.5.5 0 1 0-.708-.708l-3.5 3.5a.5.5 0 0 0 0 .708l3.5 3.5a.5.5 0 0 0 .708-.708L2.707 8l3.147-3.146zm4.292 0a.5.5 0 0 1 .708-.708l3.5 3.5a.5.5 0 0 1 0 .708l-3.5 3.5a.5.5 0 0 1-.708-.708L13.293 8l-3.147-3.146z"/>
-          </svg>
-          <span id="terminal-btn-text">Terminal Mode</span>
-        </button>
-        <!-- Mobile hamburger toggle -->
-        <button class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Toggle mobile navigation" aria-expanded="false">
-          <svg id="hamburger-icon" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
           </svg>
         </button>
@@ -537,9 +510,7 @@
       </ul>
       <p class="footer-signature">Built with <span class="footer-heart">&#9829;</span> by Brandon Funi &mdash; from Cameroon, for the world.</p>
       <p class="footer-text">&copy; 2026 Brandon Funi. All rights reserved.</p>
-      <p class="footer-text" id="easter-egg-desc" style="font-size:0.75rem; opacity:0.6; font-family:var(--font-mono);">
-        Try typing 'sudo' on your keyboard for system admin credentials...
-      </p>
+
     </div>
   </footer>
 
@@ -584,33 +555,6 @@
     </div>
   </div>
 
-  <!-- Developer Terminal Overlay -->
-  <div id="terminal-overlay" class="terminal-crt" role="dialog" aria-label="Developer Shell Mode">
-    <div class="terminal-header-bar">
-      <div class="terminal-title">
-        <svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
-          <path d="M5.854 4.854a.5.5 0 1 0-.708-.708l-3.5 3.5a.5.5 0 0 0 0 .708l3.5 3.5a.5.5 0 0 0 .708-.708L2.707 8l3.147-3.146zm4.292 0a.5.5 0 0 1 .708-.708l3.5 3.5a.5.5 0 0 1 0 .708l-3.5 3.5a.5.5 0 0 1-.708-.708L13.293 8l-3.147-3.146z"/>
-        </svg>
-        <span>brandon-funi@dev-terminal:~</span>
-      </div>
-      <div class="terminal-controls">
-        <div class="terminal-dot term-dot-red"></div>
-        <div class="terminal-dot term-dot-yellow"></div>
-        <button class="terminal-dot term-dot-green hover-target" id="terminal-close-dot" title="Exit Terminal" style="border:none;" aria-label="Exit terminal"></button>
-      </div>
-    </div>
-
-    <div class="terminal-body" id="terminal-body-content">
-      <div class="terminal-output" id="terminal-output-log">
-        <!-- Initial lines printed by terminal.js -->
-      </div>
-    </div>
-
-    <div class="terminal-input-line">
-      <span class="terminal-prompt">brandon-funi@dev-terminal:~$</span>
-      <input type="text" class="terminal-input" id="terminal-input-box" autofocus autocomplete="off" spellcheck="false" aria-label="Terminal Prompt Input">
-    </div>
-  </div>
 
   <!-- Expandable Project Details Modal -->
   <div class="modal-overlay" id="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-project-title">
@@ -701,7 +645,6 @@
   <script src="js/data.js"></script>
   <script src="js/analytics.js"></script>
   <script src="js/chatbot.js"></script>
-  <script src="js/terminal.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

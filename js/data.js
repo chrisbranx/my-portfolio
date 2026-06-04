@@ -363,8 +363,6 @@ const textTranslations = {
     skillsTitle: "Technical Skills",
     experienceTitle: "Where I've Been",
     contactTitle: "Let's Create Something",
-    terminalBtn: "Terminal Mode",
-    normalModeBtn: "Portfolio Mode",
     musicOn: "Ambient: ON",
     musicOff: "Ambient: OFF",
     all: "All",
@@ -402,8 +400,6 @@ const textTranslations = {
     clicks: "Clicks Logged",
     popularQuestions: "Top User Inquiries",
     heatmapTitle: "Click Coordinate Matrix (Heatmap Simulator)",
-    easterEggPrompt: "Try typing 'sudo' on your keyboard for system admin credentials...",
-    backToPortfolio: "Exit Terminal",
     snippets: "Code Snippets",
     activity: "Contribution Activity"
   },
@@ -424,8 +420,6 @@ const textTranslations = {
     skillsTitle: "Compétences Techniques",
     experienceTitle: "Mon Parcours",
     contactTitle: "Créons Quelque Chose",
-    terminalBtn: "Mode Terminal",
-    normalModeBtn: "Mode Portfolio",
     musicOn: "Ambiance: ACTIVE",
     musicOff: "Ambiance: INACTIVE",
     all: "Tous",
@@ -463,8 +457,6 @@ const textTranslations = {
     clicks: "Clics Enregistrés",
     popularQuestions: "Questions Populaires",
     heatmapTitle: "Matrice de Coordonnées (Simulateur de Clics)",
-    easterEggPrompt: "Essayez de taper 'sudo' sur votre clavier pour le mode admin...",
-    backToPortfolio: "Quitter le Terminal",
     snippets: "Code Snippets",
     activity: "Activité de Contribution"
   }

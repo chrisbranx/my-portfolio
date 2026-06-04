@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- Global State ---
   let currentLang = localStorage.getItem("portfolio-lang") || "en";
   let activeTheme = localStorage.getItem("portfolio-theme") || "dark";
-  let activeAccent = localStorage.getItem("portfolio-accent") || "emerald";
   let isMusicPlaying = false;
   let synthInterval = null;
   let audioCtx = null;
@@ -23,15 +22,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const themeToggleBtn = document.getElementById("theme-toggle");
   const sunIcon = document.querySelector(".sun-icon");
   const moonIcon = document.querySelector(".moon-icon");
-  const accentDropdownBtn = document.getElementById("accent-dropdown-btn");
-  const themeDropdown = document.getElementById("theme-dropdown");
   const ambientToggleBtn = document.getElementById("ambient-toggle");
   const musicBtnText = document.getElementById("music-btn-text");
 
-  // Modals & Terminals
+  // Modals
   const projectModal = document.getElementById("project-modal");
   const modalCloseBtn = document.getElementById("modal-close-btn");
-  const terminalToggleBtn = document.getElementById("terminal-toggle-btn");
 
   // --- 1. Loader Screen Simulation ---
   let progress = 0;
@@ -83,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
   animateCursor();
 
   function updateHoverTargets() {
-    const hoverables = document.querySelectorAll("a, button, input, textarea, .hover-target, .tab-btn, .project-card, .accent-dot, .chip-btn");
+    const hoverables = document.querySelectorAll("a, button, input, textarea, .hover-target, .tab-btn, .project-card, .chip-btn");
     hoverables.forEach(item => {
       item.addEventListener("mouseenter", () => cursor.classList.add("hover"));
       item.addEventListener("mouseleave", () => cursor.classList.remove("hover"));
@@ -196,7 +192,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   animateParticles();
 
-  // --- 4. Light/Dark Mode Toggle & Accent Selection ---
+  // --- 4. Light/Dark Mode Toggle ---
   function applyTheme() {
     document.body.setAttribute("data-theme", activeTheme);
     localStorage.setItem("portfolio-theme", activeTheme);
@@ -209,47 +205,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function applyAccent() {
-    document.body.className = "";
-    document.body.classList.add(`theme-${activeAccent}`);
-    localStorage.setItem("portfolio-accent", activeAccent);
-
-    // Set active status on dots
-    document.querySelectorAll(".accent-dot").forEach(dot => {
-      if (dot.getAttribute("data-color") === activeAccent) {
-        dot.classList.add("active");
-      } else {
-        dot.classList.remove("active");
-      }
-    });
-  }
-
   themeToggleBtn.addEventListener("click", () => {
     activeTheme = activeTheme === "dark" ? "light" : "dark";
     applyTheme();
     triggerClickLog(0, 0); // For analytics
   });
 
-  accentDropdownBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    themeDropdown.classList.toggle("show");
-  });
-
-  document.addEventListener("click", () => {
-    themeDropdown.classList.remove("show");
-  });
-
-  document.querySelectorAll(".accent-dot").forEach(dot => {
-    dot.addEventListener("click", (e) => {
-      activeAccent = e.target.getAttribute("data-color");
-      applyAccent();
-      themeDropdown.classList.remove("show");
-    });
-  });
-
   // Apply initial values
   applyTheme();
-  applyAccent();
 
   // --- 5. Interactive Scroll reveal & Progress Tracker ---
   window.addEventListener("scroll", () => {
@@ -799,22 +762,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("chatbot-input-field").setAttribute("placeholder", trans.chatbotPlaceholder);
 
     // Terminal button label
-    document.getElementById("terminal-btn-text").textContent = trans.terminalBtn;
-
-    // Review Form
-    const reviewFormHeading = document.getElementById("review-form-heading");
-    if (reviewFormHeading) reviewFormHeading.textContent = trans.reviewHeading;
-    const reviewLabelName = document.getElementById("review-label-name");
-    if (reviewLabelName) reviewLabelName.textContent = trans.reviewLabelName;
-    const reviewLabelRole = document.getElementById("review-label-role");
-    if (reviewLabelRole) reviewLabelRole.textContent = trans.reviewLabelRole;
-    const reviewLabelText = document.getElementById("review-label-text");
-    if (reviewLabelText) reviewLabelText.textContent = trans.reviewLabelText;
-    const reviewSubmitBtn = document.getElementById("review-submit-btn");
-    if (reviewSubmitBtn) reviewSubmitBtn.textContent = trans.reviewSubmit;
-    const reviewSuccessAlert = document.getElementById("review-success-alert");
-    if (reviewSuccessAlert) reviewSuccessAlert.textContent = trans.reviewSuccess;
-
     // Insights Panel
     document.getElementById("admin-section-heading").textContent = trans.visitorStats;
     document.getElementById("stat-views-label").textContent = trans.views;
@@ -823,8 +770,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("insights-heatmap-title").textContent = trans.heatmapTitle;
     document.getElementById("insights-questions-title").textContent = trans.popularQuestions;
 
-    // Footer Egg
-    document.getElementById("easter-egg-desc").textContent = trans.easterEggPrompt;
   }
 
   // Language switch triggers
@@ -1085,7 +1030,6 @@ document.addEventListener("DOMContentLoaded", () => {
     { id: "contact", label: "Get in Touch", icon: "<svg width='16' height='16' fill='currentColor' viewBox='0 0 16 16'><path d='M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2z'/></svg>", action: () => scrollToSection("contact") },
     { type: "separator" },
     { id: "theme", label: "Toggle Dark/Light Theme", icon: "<svg width='16' height='16' fill='currentColor' viewBox='0 0 16 16'><path d='M6 .278a.768.768 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.428c0 4.017 3.251 7.268 7.268 7.268 1.018 0 1.996-.21 2.896-.587.515-.202.684.839.172 1.2A8.1 8.1 0 0 1 8.3 16C3.716 16 0 12.284 0 7.7 0 3.91 2.535 0 6 .278z'/></svg>", action: () => { themeToggleBtn.click(); closePalette(); } },
-    { id: "terminal", label: "Open Developer Terminal", icon: "<svg width='16' height='16' fill='currentColor' viewBox='0 0 16 16'><path d='M5.854 4.854a.5.5 0 1 0-.708-.708l-3.5 3.5a.5.5 0 0 0 0 .708l3.5 3.5a.5.5 0 0 0 .708-.708L2.707 8l3.147-3.146zm4.292 0a.5.5 0 0 1 .708-.708l3.5 3.5a.5.5 0 0 1 0 .708l-3.5 3.5a.5.5 0 0 1-.708-.708L13.293 8l-3.147-3.146z'/></svg>", action: () => { terminalToggleBtn.click(); closePalette(); } },
     { id: "music", label: "Toggle Ambient Music", icon: "<svg width='16' height='16' fill='currentColor' viewBox='0 0 16 16'><path d='M11.536 14.01A8.47 8.47 0 0 0 14.02 11.53a.5.5 0 1 0-.82-.575 7.47 7.47 0 0 1-2.186 2.185.5.5 0 0 0 .522.871zM1.98 12.01A8.47 8.47 0 0 0 4.47 14.5a.5.5 0 0 0 .522-.871 7.47 7.47 0 0 1-2.186-2.185.5.5 0 1 0-.825.575z'/><path d='M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8z'/></svg>", action: () => { ambientToggleBtn.click(); closePalette(); } },
     { id: "cv", label: "Download CV", icon: "<svg width='16' height='16' fill='currentColor' viewBox='0 0 16 16'><path d='M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z'/><path d='M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z'/></svg>", action: () => { document.getElementById("floating-cv-btn")?.click(); closePalette(); } },
   ];
@@ -1145,8 +1089,6 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("keydown", (e) => {
     if ((e.ctrlKey || e.metaKey) && e.key === "k") {
       e.preventDefault();
-      const termOverlay = document.getElementById("terminal-overlay");
-      if (termOverlay && termOverlay.classList.contains("show")) return;
       openPalette();
     }
     if (e.key === "Escape") {
@@ -1364,7 +1306,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Expose admin render for the terminal unlock
+  // Expose admin render for the Insights unlock
   window.renderPendingReviews = renderPendingReviews;
 
   // Share variables globally for chatbot and terminal interfaces
