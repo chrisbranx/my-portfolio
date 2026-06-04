@@ -335,6 +335,24 @@ header {
   border-radius: 2px;
 }
 
+.nav-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  height: 100dvh;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 98;
+}
+
+.nav-overlay.open {
+  display: block;
+}
+
 .hamburger {
   display: none;
   flex-direction: column;
@@ -347,7 +365,7 @@ header {
   border-radius: 8px;
   cursor: pointer;
   padding: 6px;
-  z-index: 100;
+  z-index: 101;
   transition: border-color 0.2s;
 }
 
@@ -2014,22 +2032,11 @@ footer {
 }
 
 /* ==========================================================================
-   RESPONSIVENESS AND COLLAPSIBLE ADAPTATIONS
+   RESPONSIVENESS — FULL SPECTRUM (Touch-first, all screens)
    ========================================================================== */
-@media (max-width: 991px) {
-  .hero-wrapper {
-    flex-direction: column-reverse;
-    justify-content: center;
-    text-align: center;
-    gap: 30px;
-  }
 
-  .hero-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
+/* --- TABLETS & LANDSCAPE PHONES (up to 1024px) --- */
+@media (max-width: 1024px) {
   .hero-title {
     font-size: 2.8rem;
   }
@@ -2046,9 +2053,19 @@ footer {
   .analytics-content {
     grid-template-columns: 1fr;
   }
+
+  .avatar-container {
+    width: 220px;
+    height: 220px;
+  }
+
+  .avatar-inner {
+    font-size: 3.5rem;
+  }
 }
 
-@media (max-width: 767px) {
+/* --- DESKTOP NAV HIDDEN, MOBILE NAV ACTIVE (1024px and below) --- */
+@media (max-width: 1024px) {
   header {
     padding: 10px 0;
   }
@@ -2058,7 +2075,7 @@ footer {
     top: 0;
     right: -100%;
     width: 280px;
-    height: 100vh;
+    height: 100dvh;
     flex-direction: column;
     background: var(--card-bg);
     backdrop-filter: var(--glass-blur);
@@ -2069,10 +2086,12 @@ footer {
     transition: right 0.3s ease;
     z-index: 99;
     display: flex;
+    overflow-y: auto;
   }
 
   .nav-links.open {
     right: 0;
+    box-shadow: -10px 0 40px rgba(0,0,0,0.2);
   }
 
   .nav-links li {
@@ -2081,10 +2100,11 @@ footer {
 
   .nav-links a {
     display: block;
-    padding: 12px 16px;
+    padding: 14px 18px;
     font-size: 1.05rem;
     border-radius: 10px;
     transition: background 0.2s;
+    min-height: 44px;
   }
 
   .nav-links a:hover,
@@ -2095,21 +2115,28 @@ footer {
   .hamburger {
     display: flex;
   }
+}
 
-  .controls {
-    gap: 6px;
+/* --- MEDIUM SCREENS: PHONES IN PORTRAIT & SMALL TABLETS (768px and below) --- */
+@media (max-width: 768px) {
+  .hero-wrapper {
+    flex-direction: column-reverse;
+    justify-content: center;
+    text-align: center;
+    gap: 24px;
+    min-height: auto;
+    padding: 20px 0;
   }
 
-  .control-btn span {
-    display: none; /* Hide button text labels on smaller screens */
-  }
-
-  .section-title {
-    font-size: 1.8rem;
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .hero-title {
     font-size: 2.2rem;
+    letter-spacing: -1px;
   }
 
   .typewriter-text {
@@ -2117,11 +2144,45 @@ footer {
   }
 
   .hero-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .hero-description {
     font-size: 0.95rem;
+    max-width: 100%;
+  }
+
+  .hero-now-strip {
+    font-size: 0.75rem;
+    padding: 6px 12px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
   }
 
   .section {
-    padding: 60px 0;
+    padding: 50px 0 30px;
+  }
+
+  .section-title {
+    font-size: 1.6rem;
+    margin-bottom: 30px;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
   }
 
   .testimonials-grid {
@@ -2140,6 +2201,32 @@ footer {
     align-self: flex-end;
   }
 
+  .controls {
+    gap: 6px;
+  }
+
+  .control-btn {
+    padding: 8px 10px;
+  }
+
+  .control-btn span {
+    display: none;
+  }
+
+  .category-tabs {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tab-btn {
+    font-size: 0.8rem;
+    padding: 6px 14px;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+
   .project-modal-content {
     width: 95vw;
     margin: 20px auto;
@@ -2152,25 +2239,30 @@ footer {
     gap: 12px;
   }
 
+  .footer-signature {
+    font-size: 0.85rem;
+    text-align: center;
+    padding: 0 16px;
+  }
+
   .chatbot-window {
-    width: calc(100vw - 60px);
+    width: calc(100vw - 40px);
     right: -10px;
     height: 480px;
-  }
-}
-
-/* Very small screens */
-@media (max-width: 480px) {
-  .hero-title {
-    font-size: 1.8rem;
+    max-height: 70vh;
   }
 
-  .typewriter-text {
-    font-size: 1rem;
+  .chatbot-bubble {
+    width: 52px;
+    height: 52px;
   }
 
-  .section-title {
-    font-size: 1.5rem;
+  .modal-title {
+    font-size: 1.4rem;
+  }
+
+  .admin-grid {
+    grid-template-columns: 1fr;
   }
 
   .stats-grid {
@@ -2182,32 +2274,110 @@ footer {
   }
 
   .stat-counter-num {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
   }
 
   .stat-counter-label {
     font-size: 0.75rem;
   }
 
-  .about-grid-enhanced {
-    gap: 20px;
+  .admin-review-btn {
+    padding: 10px 18px;
+    font-size: 0.85rem;
+    min-height: 44px;
+  }
+}
+
+/* --- VERY SMALL PHONES (400px and below, incl Samsung Galaxy fold, iPhone SE) --- */
+@media (max-width: 400px) {
+  .hero-title {
+    font-size: 1.6rem;
   }
 
-  .now-building-label {
-    font-size: 0.8rem;
-  }
-
-  .now-building-text {
+  .typewriter-text {
     font-size: 0.9rem;
   }
 
-  .admin-grid {
-    grid-template-columns: 1fr;
+  .section-title {
+    font-size: 1.3rem;
+  }
+
+  .loader-logo {
+    font-size: 1.6rem;
+  }
+
+  .avatar-container {
+    width: 160px;
+    height: 160px;
+  }
+
+  .avatar-inner {
+    font-size: 2.5rem;
+  }
+
+  .nav-links {
+    width: 85vw;
   }
 
   .command-palette {
-    width: 95vw;
+    width: 92vw;
     margin: 0 10px;
+  }
+
+  .container {
+    padding: 0 12px;
+  }
+
+  .review-form {
+    padding: 20px;
+  }
+
+  .testimonial-card {
+    padding: 20px;
+  }
+
+  .admin-review-card {
+    padding: 16px;
+  }
+}
+
+/* --- TOUCH DEVICES: disable hover-only effects, improve tap targets --- */
+@media (hover: none) and (pointer: coarse) {
+  * { cursor: auto; }
+  .custom-cursor, .custom-cursor-dot { display: none; }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .control-btn,
+  .nav-links a,
+  .btn,
+  .tab-btn,
+  .chip-btn,
+  .admin-review-btn,
+  .social-icon,
+  .back-to-top {
+    min-height: 44px;
+  }
+
+  .stat-counter-item:hover {
+    border-color: var(--border-color);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .stat-counter-item:hover .stat-counter-icon {
+    transform: none;
+    background: rgba(var(--accent-rgb), 0.1);
+  }
+
+  .glass-card:hover {
+    background: var(--card-bg);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .project-card:hover {
+    transform: none !important;
   }
 }
 

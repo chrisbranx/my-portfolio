@@ -1188,18 +1188,34 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- 19a. Mobile Hamburger Menu ---
   const hamburger = document.getElementById("hamburger-btn");
   const navLinks = document.getElementById("menu-links");
+  const navOverlay = document.getElementById("nav-overlay");
+  function closeNav() {
+    navLinks.classList.remove("open");
+    hamburger.classList.remove("open");
+    if (navOverlay) navOverlay.classList.remove("open");
+    hamburger.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+  }
+  function openNav() {
+    navLinks.classList.add("open");
+    hamburger.classList.add("open");
+    if (navOverlay) navOverlay.classList.add("open");
+    hamburger.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+  }
   if (hamburger && navLinks) {
     hamburger.addEventListener("click", () => {
-      navLinks.classList.toggle("open");
-      hamburger.classList.toggle("open");
-      hamburger.setAttribute("aria-expanded", navLinks.classList.contains("open"));
+      if (navLinks.classList.contains("open")) {
+        closeNav();
+      } else {
+        openNav();
+      }
     });
+    if (navOverlay) {
+      navOverlay.addEventListener("click", closeNav);
+    }
     document.querySelectorAll("#menu-links a").forEach(link => {
-      link.addEventListener("click", () => {
-        navLinks.classList.remove("open");
-        hamburger.classList.remove("open");
-        hamburger.setAttribute("aria-expanded", "false");
-      });
+      link.addEventListener("click", closeNav);
     });
   }
 
