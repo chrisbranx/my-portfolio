@@ -11,6 +11,16 @@ document.addEventListener("DOMContentLoaded", () => {
   let synthInterval = null;
   let audioCtx = null;
 
+  // Simulated GitHub contribution data (140 days / 20 weeks)
+  const contributionData = Array.from({ length: 140 }, () => {
+    const rand = Math.random();
+    if (rand < 0.3) return 0;
+    if (rand < 0.55) return 1;
+    if (rand < 0.75) return 2;
+    if (rand < 0.9) return 3;
+    return 4;
+  });
+
   // --- Element Selectors ---
   const loader = document.getElementById("loading-screen");
   const loaderBar = document.getElementById("loader-progress");
@@ -702,6 +712,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     updateHoverTargets();
     initTilt();
+    renderContributionGraph();
   }
 
   function translateStaticLayout() {
@@ -761,6 +772,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("insights-heatmap-title").textContent = trans.heatmapTitle;
     document.getElementById("insights-questions-title").textContent = trans.popularQuestions;
 
+    translateNewSections();
   }
 
   // Language switch triggers
