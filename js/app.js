@@ -629,7 +629,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 6. Testimonials Render — Carousel (right-to-left slide)
     const allTestimonials = [...(data.testimonials || []), ...getApprovedReviews()];
     window._testimonialsData = allTestimonials;
-    renderTestimonialCarousel();
+    initTestimonials();
 
     // Run custom cursor bindings and reveal observers
     updateHoverTargets();
@@ -971,8 +971,12 @@ document.addEventListener("DOMContentLoaded", () => {
   function renderCodeSnippets() {
     const container = document.getElementById("snippets-container");
     if (!container) return;
-
-    container.innerHTML = (window.codeSnippets || []).map(snippet => `
+    const snippets = window.codeSnippets || [];
+    if (!snippets.length) {
+      container.innerHTML = '<p style="color:var(--text-muted);text-align:center;padding:2rem;">No code snippets available.</p>';
+      return;
+    }
+    container.innerHTML = snippets.map(snippet => `
       <div class="snippet-card hover-target">
         <div class="snippet-header">
           <div class="snippet-dots">
@@ -1302,16 +1306,16 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // --- Testimonial Carousel (right-to-left slide) ---
-  let testIndex = 0;
-  let testTimer = null;
+  let _ti = 0, _tt = null;
 
-  function renderTestimonialCarousel() {
-    const arr = window._testimonialsData || [];
+  function initTestimonials() {
+    const data = window._testimonialsData;
     const track = document.getElementById("book-track");
     const dots = document.getElementById("book-dots");
-    if (!arr.length || !track) return;
+    if (!data || !data.length || !track) return;
+    _ti = 0;
 
-    track.innerHTML = arr.map(t => `
+    track.innerHTML = data.map(t => `
       <div class="book-slide">
         <div class="book-quote">&ldquo;</div>
         <p class="book-text">${escapeHtml(t.text)}</p>
@@ -1322,79 +1326,50 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     `).join("");
 
-    goToSlide(testIndex);
-
     if (dots) {
-      dots.innerHTML = arr.map((_, i) =>
-        `<button class="book-dot${i === testIndex ? ' active' : ''}" data-idx="${i}"></button>`
+      dots.innerHTML = data.map((_, i) =>
+        `<button class="book-dot${i === 0 ? ' active' : ''}" data-idx="${i}"></button>`
       ).join("");
-      dots.querySelectorAll(".book-dot").forEach(d => {
-        d.addEventListener("click", () => {
-          clearInterval(testTimer);
-          goToSlide(parseInt(d.dataset.idx));
-          startTestTimer();
-        });
-      });
     }
   }
 
-  function goToSlide(index) {
-    const arr = window._testimonialsData || [];
-    if (!arr.length) return;
-    if (index < 0) index = arr.length - 1;
-    if (index >= arr.length) index = 0;
-    testIndex = index;
-
+  function slideTo(i) {
+    const data = window._testimonialsData;
+    if (!data || !data.length) return;
+    if (i < 0) i = data.length - 1;
+    if (i >= data.length) i = 0;
+    _ti = i;
     const track = document.getElementById("book-track");
-    if (track) {
-      track.style.transform = `translateX(-${index * 100}%)`;
-    }
-
+    if (track) track.style.transform = `translateX(-${i * 100}%)`;
     const dots = document.getElementById("book-dots");
-    if (dots) {
-      dots.querySelectorAll(".book-dot").forEach((d, i) => {
-        d.classList.toggle("active", i === index);
-      });
-    }
+    if (dots) dots.querySelectorAll(".book-dot").forEach((d, j) => d.classList.toggle("active", j === i));
   }
 
-  function startTestTimer() {
-    clearInterval(testTimer);
-    testTimer = setInterval(() => {
-      goToSlide(testIndex + 1);
-    }, 5000);
+  function restartTimer() {
+    if (_tt) clearInterval(_tt);
+    _tt = setInterval(() => slideTo(_ti + 1), 10000);
   }
 
-  document.getElementById("book-prev")?.addEventListener("click", () => {
-    clearInterval(testTimer);
-    goToSlide(testIndex - 1);
-    startTestTimer();
+  document.getElementById("book-prev")?.addEventListener("click", () => { slideTo(_ti - 1); restartTimer(); });
+  document.getElementById("book-next")?.addEventListener("click", () => { slideTo(_ti + 1); restartTimer(); });
+
+  document.getElementById("book-dots")?.addEventListener("click", e => {
+    const dot = e.target.closest(".book-dot");
+    if (dot) { slideTo(parseInt(dot.dataset.idx)); restartTimer(); }
   });
 
-  document.getElementById("book-next")?.addEventListener("click", () => {
-    clearInterval(testTimer);
-    goToSlide(testIndex + 1);
-    startTestTimer();
-  });
-
-  // Touch/swipe support
-  let touchX = 0;
-  const bookEl = document.getElementById("book-content");
-  if (bookEl) {
-    bookEl.addEventListener("touchstart", (e) => {
-      touchX = e.changedTouches[0].screenX;
-    }, { passive: true });
-    bookEl.addEventListener("touchend", (e) => {
-      const diff = touchX - e.changedTouches[0].screenX;
-      if (Math.abs(diff) > 40) {
-        clearInterval(testTimer);
-        goToSlide(diff > 0 ? testIndex + 1 : testIndex - 1);
-        startTestTimer();
-      }
+  const _be = document.getElementById("book-content");
+  let _tx = 0;
+  if (_be) {
+    _be.addEventListener("touchstart", e => { _tx = e.changedTouches[0].screenX; }, { passive: true });
+    _be.addEventListener("touchend", e => {
+      const d = _tx - e.changedTouches[0].screenX;
+      if (Math.abs(d) > 40) { slideTo(d > 0 ? _ti + 1 : _ti - 1); restartTimer(); }
     }, { passive: true });
   }
 
-  startTestTimer();
+  // Lazy-init: call once from renderDynamicCV sets up slides, start timer here
+  restartTimer();
 
   // --- Admin Password Access ---
   const footerAdminBtn = document.getElementById("footer-admin-btn");
