@@ -160,7 +160,7 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100dvh;
   background: var(--bg-primary);
   z-index: 10000;
   display: flex;
@@ -2158,6 +2158,20 @@ footer {
     font-size: 0.85rem;
     min-height: 44px;
   }
+
+  #loading-screen {
+    height: 100dvh;
+    padding: 0 24px;
+    text-align: center;
+  }
+
+  .loader-logo {
+    font-size: 1.8rem;
+  }
+
+  .loader-bar-container {
+    width: 160px;
+  }
 }
 
 /* --- VERY SMALL PHONES (400px and below, incl Samsung Galaxy fold, iPhone SE) --- */
@@ -2175,7 +2189,11 @@ footer {
   }
 
   .loader-logo {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
+  }
+
+  .loader-bar-container {
+    width: 140px;
   }
 
   .avatar-container {

@@ -90,7 +90,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- 3. Interactive Particles Canvas Background ---
   const ctx = canvas.getContext("2d");
   let particlesArray = [];
-  const particleCount = window.innerWidth < 768 ? 35 : 85;
+  const isLight = activeTheme === "light";
+  const baseCount = window.innerWidth < 768 ? 35 : 85;
+  const particleCount = isLight ? Math.floor(baseCount * 0.4) : baseCount;
 
   function resizeCanvas() {
     canvas.width = window.innerWidth;
@@ -150,7 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
     draw() {
       ctx.fillStyle = activeTheme === "dark"
         ? `rgba(var(--accent-rgb), ${this.size > 2 ? 0.35 : 0.15})`
-        : `rgba(var(--accent-rgb), ${this.size > 2 ? 0.25 : 0.08})`;
+        : `rgba(var(--accent-rgb), ${this.size > 2 ? 0.12 : 0.04})`;
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
       ctx.fill();
